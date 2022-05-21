@@ -25,7 +25,7 @@ public class RollPlayer : StateMachineBehaviour
 
             dir = (MouseManager.Instance.hitInfo.point - GameManager.Instance.player.transform.position).normalized;
 
-            targetPos = GameManager.Instance.player.transform.position + 5.0f * dir;
+            targetPos = GameManager.Instance.player.transform.position + 4.0f * dir;
 
             GameManager.Instance.player.GetComponent<NavMeshAgent>().destination = targetPos;
         }
