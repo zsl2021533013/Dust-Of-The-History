@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization>
+	<Entry>
+		<Key>Title</Key>
+		<Value>Dust of the History</Value>
+	</Entry>
+	<Entry>
+		<Key>New Game</Key>
+		<Value>New Game</Value>
+	</Entry>
+	<Entry>
+		<Key>Continue</Key>
+		<Value>Continue</Value>
+	</Entry>
+	<Entry>
+		<Key>Language</Key>
+		<Value>Language</Value>
+	</Entry>
+	<Entry>
+		<Key>Chinese</Key>
+		<Value>中文</Value>
+	</Entry>
+	<Entry>
+		<Key>English</Key>
+		<Value>English</Value>
+	</Entry>
+	<Entry>
+		<Key>Quit</Key>
+		<Value>Quit</Value>
+	</Entry>
+</Localization>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Localization>
+	<Entry>
+		<Key>Title</Key>
+		<Value>历史的尘埃</Value>
+	</Entry>
+	<Entry>
+		<Key>New Game</Key>
+		<Value>新的冒险</Value>
+	</Entry>
+	<Entry>
+		<Key>Continue</Key>
+		<Value>继续游戏</Value>
+	</Entry>
+	<Entry>
+		<Key>Language</Key>
+		<Value>语言</Value>
+	</Entry>
+	<Entry>
+		<Key>Chinese</Key>
+		<Value>中文</Value>
+	</Entry>
+	<Entry>
+		<Key>English</Key>
+		<Value>English</Value>
+	</Entry>
+	<Entry>
+		<Key>Quit</Key>
+		<Value>离开游戏</Value>
+	</Entry>
+</Localization>
