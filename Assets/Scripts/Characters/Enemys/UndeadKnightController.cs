@@ -7,11 +7,11 @@ public class UndeadKnightController : EnemyController
 {
     public const float KickCoolDown = 2.0f;
 
-    public float kickRange = 1.2f;
+    public float kickRange = 1.3f;
 
-    public float kickCoolDown = 0.0f;
+    public float kickCoolDown = 3.0f;
 
-    public float kickForce = 18.0f;
+    public float kickForce = 10.0f;
 
     public GameObject slashPS1;
 
@@ -56,9 +56,30 @@ public class UndeadKnightController : EnemyController
         if (!FoundPlayerInAttackRange()) return; // 如果此时玩家离开，攻击无效
 
         var targetStats = attackTarget.GetComponent<CharacterStats>();
+        characterStats.isCritical = true;
         characterStats.TakeDamage(characterStats, targetStats);
 
-        attackTarget.GetComponent<Animator>().SetTrigger("Hit");
+        attackTarget.GetComponent<Animator>().SetTrigger("Knockdown");
+    }
+
+    public void Kick()
+    {
+        if (attackTarget == null) return;// 如果此时死亡，攻击无效
+        if (!transform.IsFacingTarget(attackTarget.transform)) return; // 如果此时玩家未处于前方，攻击无效
+        if (!FoundPlayerInKickRange()) return; // 如果此时玩家离开，攻击无效
+
+        transform.LookAt(attackTarget.transform);
+
+        Vector3 direction = attackTarget.transform.position - transform.position;
+        direction.Normalize();
+
+        attackTarget.GetComponent<NavMeshAgent>().isStopped = true;
+        attackTarget.GetComponent<Rigidbody>().velocity = direction * kickForce;
+
+        attackTarget.GetComponent<Animator>().SetTrigger("Dizzy");
+
+        var targetStats = attackTarget.GetComponent<CharacterStats>();
+        characterStats.TakeDamage(characterStats, targetStats);
     }
 
     IEnumerator SlashPS1()
@@ -93,25 +114,5 @@ public class UndeadKnightController : EnemyController
             animator.SetTrigger("Kick");
             kickCoolDown = KickCoolDown;
         }
-    }
-
-    public void Kick()
-    {
-        if (attackTarget == null) return;// 如果此时死亡，攻击无效
-        if (!transform.IsFacingTarget(attackTarget.transform)) return; // 如果此时玩家未处于前方，攻击无效
-        if (!FoundPlayerInKickRange()) return; // 如果此时玩家离开，攻击无效
-
-        transform.LookAt(attackTarget.transform);
-
-        Vector3 direction = attackTarget.transform.position - transform.position;
-        direction.Normalize();
-
-        attackTarget.GetComponent<NavMeshAgent>().isStopped = true;
-        attackTarget.GetComponent<Rigidbody>().velocity = direction * kickForce;
-
-        attackTarget.GetComponent<Animator>().SetTrigger("Dizzy");
-
-        var targetStats = attackTarget.GetComponent<CharacterStats>();
-        characterStats.TakeDamage(characterStats, targetStats);
     }
 }
