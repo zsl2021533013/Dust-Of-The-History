@@ -12,7 +12,7 @@ public class MouseManager : Singleton<MouseManager>
 
     public Texture2D point, doorway, attack, target, arrow;
 
-    public bool clickPortal;
+    public bool isClickPortal, isClickTrigger;
 
     public RaycastHit hitInfo;
 
@@ -55,6 +55,9 @@ public class MouseManager : Singleton<MouseManager>
                 case "Item":
                     Cursor.SetCursor(point, new Vector2(0, 0), CursorMode.Auto);
                     break;
+                case "Trigger":
+                    Cursor.SetCursor(point, new Vector2(0, 0), CursorMode.Auto);
+                    break;
                 default:
                     Cursor.SetCursor(arrow, new Vector2(0, 0), CursorMode.Auto);
                     break;
@@ -70,28 +73,41 @@ public class MouseManager : Singleton<MouseManager>
             {
                 OnMouseClick?.Invoke(hitInfo.point);
             }
+
             if (hitInfo.collider.gameObject.CompareTag("Enemy"))
             {
                 OnEnemyClick?.Invoke(hitInfo.collider.gameObject);
             }
+
             if (hitInfo.collider.gameObject.CompareTag("Attackable"))
             {
                 OnEnemyClick?.Invoke(hitInfo.collider.gameObject);
             }
+
             if (hitInfo.collider.gameObject.CompareTag("Item"))
             {
                 OnMouseClick?.Invoke(hitInfo.point);
             }
+
             if (hitInfo.collider.gameObject.CompareTag("Portal"))
             {
-                clickPortal = true;
+                isClickPortal = true;
                 OnMouseClick?.Invoke(hitInfo.point);
             }
             else
             {
-                clickPortal = false;
+                isClickPortal = false;
             }
 
+            if (hitInfo.collider.gameObject.CompareTag("Trigger"))
+            {
+                isClickTrigger = true;
+                OnMouseClick?.Invoke(hitInfo.point);
+            }
+            else
+            {
+                isClickTrigger = false;
+            }
         }
     }
 

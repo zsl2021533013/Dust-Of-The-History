@@ -29,7 +29,7 @@ public class PortalController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // 不能用协程，因为会开很多个出来！
     {
-        if (other.CompareTag("Player") && MouseManager.Instance.clickPortal)
+        if (other.CompareTag("Player") && MouseManager.Instance.isClickPortal)
         {
             TranstionManager.Instance.TransitionToDestination(this);
         }

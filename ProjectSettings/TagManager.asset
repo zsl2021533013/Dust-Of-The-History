@@ -11,6 +11,7 @@ TagManager:
   - Portal
   - Enemy
   - Attackable
+  - Trigger
   layers:
   - Default
   - TransparentFX
