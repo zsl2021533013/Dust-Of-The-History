@@ -38,6 +38,10 @@ public class MouseManager : Singleton<MouseManager>
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hitInfo))
         {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                Debug.Log(hitInfo.collider.gameObject.name);
+            }
             switch(hitInfo.collider.gameObject.tag)
             {
                 case "Ground":

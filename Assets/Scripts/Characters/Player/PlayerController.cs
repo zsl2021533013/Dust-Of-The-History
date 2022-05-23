@@ -176,13 +176,7 @@ public class PlayerController : Singleton<PlayerController>
 
         if (attackTarget.CompareTag("Attackable")) // 如果为可破坏物体
         {
-            if (attackTarget.GetComponent<RockController>() && attackTarget.GetComponent<RockController>().rockState == RockState.HitNothing) // 如果为石头
-            {
-                attackTarget.GetComponent<RockController>().rockState = RockState.HitEnemy;
-
-                Vector3 dir = (2 * transform.forward + Vector3.up).normalized;
-                attackTarget.GetComponent<Rigidbody>().velocity = dir * ThrowForce;
-            }
+            
         } // TODO: 可以删掉
 
         if (!transform.IsFacingTarget(attackTarget.transform)) return; // 如果此时敌人未处于前方，攻击无效
