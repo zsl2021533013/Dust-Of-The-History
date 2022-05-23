@@ -14,7 +14,6 @@ public class CMFreelookOnlyWhenRightMouseDown : Singleton<CMFreelookOnlyWhenRigh
         {   
             if (cinemachineFreeLook.m_Lens.FieldOfView <= 50)
             {
-                
                 cinemachineFreeLook.m_Lens.FieldOfView += 1;
             }
             //cinemachineFreeLook.m_Lens.OrthographicSize
@@ -24,7 +23,6 @@ public class CMFreelookOnlyWhenRightMouseDown : Singleton<CMFreelookOnlyWhenRigh
             if (cinemachineFreeLook.m_Lens.FieldOfView >= 30)
             {
                 cinemachineFreeLook.m_Lens.FieldOfView -= 1;
-
             }
         }
 
