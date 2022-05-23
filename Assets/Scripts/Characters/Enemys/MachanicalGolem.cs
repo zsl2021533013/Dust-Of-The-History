@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class MachanicalGolem : EnemyController
 {
+    [Header("Attack 1 & 2 Information")]
+
     public int minFlameDamage;
 
     public int maxFlameDamage;
@@ -15,38 +17,81 @@ public class MachanicalGolem : EnemyController
 
     public float dotThreshold;
 
-    public GameObject slashPS1;
+    public GameObject flameThrowerPS;
 
-    public GameObject slashPS2;
+    public GameObject gunShotPS;
+
+    [Space(10)]
+
+    [Header("Skill Information")]
+
+    public const float Skill2CoolDown = 18.0f;
+
+    public int skill2Damage;
+
+    public float skill2Range;
+
+    public GameObject powerDrawPS;
+
+    private float skill2CoolDown = 0.0f;
+
+    public bool FoundPlayerInSkill2Range()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, skill2Range);
+
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                attackTarget = collider.gameObject;
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public override void Hit()
     {
-        StartCoroutine(SlashPS1());
+        StartCoroutine(FlameThrowerPS());
     }
 
     public void SkillHit()
     {
-        StartCoroutine(SlashPS2());
+        StartCoroutine(GunShotPS());
     }
 
-    IEnumerator SlashPS1()
+    public void Skill2Hit()
+    {
+        StartCoroutine(PowerDrawPS());
+    }
+
+    IEnumerator FlameThrowerPS()
     { 
         StartCoroutine("BurnPlayer");
-        slashPS1.SetActive(true);
+        flameThrowerPS.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         StopCoroutine("BurnPlayer");
-        slashPS1.SetActive(false);
+        flameThrowerPS.SetActive(false);
         yield break;
     }
 
-    IEnumerator SlashPS2()
+    IEnumerator GunShotPS()
     {
         yield return new WaitForSeconds(0.5f);
         StartCoroutine("ShootPlayer");
-        slashPS2.SetActive(true);
+        gunShotPS.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("ShootPlayer");
-        slashPS2.SetActive(false);
+        gunShotPS.SetActive(false);
+        yield break;
+    }
+
+    IEnumerator PowerDrawPS()
+    {
+        powerDrawPS.SetActive(true);
+        yield return new WaitForSeconds(5.0f);
+        powerDrawPS.SetActive(false);
         yield break;
     }
 
@@ -54,8 +99,6 @@ public class MachanicalGolem : EnemyController
     {
         while (true)
         {
-            Debug.Log(1);
-
             if (!GameManager.Instance.gameObject)
             {
                 yield break;
@@ -78,8 +121,6 @@ public class MachanicalGolem : EnemyController
     {
         while (true)
         {
-            Debug.Log(2);
-
             if (!GameManager.Instance.gameObject)
             {
                 yield break;
@@ -95,6 +136,54 @@ public class MachanicalGolem : EnemyController
             }
 
             yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    protected override void ExitChaseState()
+    {
+        if (FoundPlayerInAttackRange() || (FoundPlayerInSkillRange() && skillCoolDown <= 0) || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0))
+        {
+            agent.destination = transform.position;
+            enemyState = EnemyState.ATTCK;
+        }
+
+        if (!FoundPlayerInSightRange())
+        {
+            agent.destination = transform.position;
+            enemyState = originalState;
+        }
+    }
+
+    protected override void EnterAttackState()
+    {
+        base.EnterAttackState();
+
+        if (skill2CoolDown > 0)
+        {
+            skill2CoolDown -= Time.deltaTime;
+        }
+        else if (FoundPlayerInSkill2Range())
+        {
+            transform.LookAt(attackTarget.transform);
+            characterStats.isCritical = (Random.value < characterStats.CriticalChance);
+            animator.SetBool("Critical", characterStats.isCritical);
+            animator.SetTrigger("Skill2");
+            skill2CoolDown = Skill2CoolDown;
+        }
+    }
+
+    public override void ExitAttackState()
+    {
+        if (!(FoundPlayerInAttackRange() || (FoundPlayerInSkillRange() && skillCoolDown <= 0) || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0)))
+        {
+            if (FoundPlayerInSightRange())
+            {
+                enemyState = EnemyState.CHASE;
+            }
+            else
+            {
+                enemyState = originalState;
+            }
         }
     }
 }
