@@ -58,7 +58,10 @@ public class StarController : MonoBehaviour
             if (FoundPlayerInExploseRange()) // 如果此时找到 player
             {
                 GameManager.Instance.characterStats.TakeDamage(damage, GameManager.Instance.characterStats);
-                GameManager.Instance.player.GetComponent<Animator>().SetTrigger("Knockdown");
+                if (!PlayerController.Instance.isKnockDown) // 判断是否已被击倒，避免起身后因 trigger 开启被再次击倒
+                {
+                    GameManager.Instance.player.GetComponent<Animator>().SetTrigger("Knockdown");
+                }
             }
         }
     }

@@ -56,8 +56,8 @@ public class UndeadKnightController : EnemyController
         if (!FoundPlayerInAttackRange()) return; // 如果此时玩家离开，攻击无效
 
         var targetStats = attackTarget.GetComponent<CharacterStats>();
-        characterStats.isCritical = true;
-        characterStats.TakeDamage(characterStats, targetStats);
+        //characterStats.isCritical = true;
+        characterStats.TakeDamage((int)(characterStats.MaxDamge * characterStats.CriticalMultiplier), targetStats);
 
         attackTarget.GetComponent<Animator>().SetTrigger("Knockdown");
     }
@@ -98,7 +98,7 @@ public class UndeadKnightController : EnemyController
         yield break;
     }
 
-    public override void EnterAttackState()
+    protected override void EnterAttackState()
     {
         base.EnterAttackState();
 

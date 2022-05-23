@@ -157,6 +157,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &-5340557351260980179
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a859aa514cb9ff4190d89e6835c3586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1102 &-5021150950308556633
 AnimatorState:
   serializedVersion: 6
@@ -406,6 +418,18 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-1693748873184801174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6603f68026d27cb429834a295026544c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!206 &-468302118805502264
 BlendTree:
   m_ObjectHideFlags: 1
@@ -628,6 +652,18 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &2902877103564460673
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f173f89ec9253d049b9e989b2109957e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1107 &3243026071139854392
 AnimatorStateMachine:
   serializedVersion: 6
@@ -822,6 +858,7 @@ AnimatorState:
   - {fileID: -6730271034519221292}
   m_StateMachineBehaviours:
   - {fileID: 918881275933817480}
+  - {fileID: -1693748873184801174}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -850,6 +887,7 @@ AnimatorState:
   - {fileID: -4598627160850451010}
   m_StateMachineBehaviours:
   - {fileID: -3105604638341566996}
+  - {fileID: 2902877103564460673}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

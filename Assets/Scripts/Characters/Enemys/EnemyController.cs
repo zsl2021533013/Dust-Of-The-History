@@ -20,13 +20,13 @@ public enum EnemyState
 [RequireComponent(typeof(HealthBarUI))]
 public class EnemyController : MonoBehaviour, IEndGameObserver
 {
-    private const float stoppingDistance = 1.0f;
+    protected const float stoppingDistance = 1.0f;
 
     public EnemyState enemyState;
 
-    private float patrolCoolDown, attackCoolDown, skillCoolDown;
+    protected float patrolCoolDown, attackCoolDown, skillCoolDown;
 
-    private NavMeshAgent agent;
+    protected NavMeshAgent agent;
 
     protected Animator animator;
 
@@ -34,19 +34,19 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
 
     protected CharacterStats characterStats; // 人物数据储存
 
-    private new Collider collider; //  似乎版本更新后有些问题？
+    protected new Collider collider; //  似乎版本更新后有些问题？
 
-    private Vector3 originalPos; // 初始地点，用于巡逻判断
+    protected Vector3 originalPos; // 初始地点，用于巡逻判断
 
-    private Quaternion originalRot; // 初始旋转
+    protected Quaternion originalRot; // 初始旋转
 
-    private Vector3 targetPos; // 巡逻时的的目标地点
+    protected Vector3 targetPos; // 巡逻时的的目标地点
 
-    private EnemyState originalState;
+    protected EnemyState originalState;
 
-    private bool isIdleBattle, isWalk, isChase, isFollow, isDie = false;
+    protected bool isIdleBattle, isWalk, isChase, isFollow, isDie = false;
 
-    private void Awake()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -90,8 +90,9 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {   
+        CoolDown();
         SwitchState();
         ChangeAnimator();
     }
@@ -141,6 +142,12 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         }
         
         return false;
+    }
+
+    void CoolDown()
+    {
+        attackCoolDown -= Time.deltaTime;
+        skillCoolDown -= Time.deltaTime;
     }
 
     void SwitchState()
@@ -273,9 +280,9 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         }
     }
 
-    void ExitChaseState()
+    protected virtual void ExitChaseState()
     {
-        if (FoundPlayerInSkillRange() || FoundPlayerInAttackRange())
+        if (FoundPlayerInAttackRange() || FoundPlayerInSkillRange())
         {
             agent.destination = transform.position;
             enemyState = EnemyState.ATTCK;
@@ -288,7 +295,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         }
     }
 
-    public virtual void EnterAttackState()
+    protected virtual void EnterAttackState()
     {
         isIdleBattle = true;
         isWalk = false;
@@ -296,11 +303,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         isFollow = false;
         agent.stoppingDistance = characterStats.AttackRange + attackTarget.GetComponent<NavMeshAgent>().radius;
 
-        if(skillCoolDown > 0)
-        {
-            skillCoolDown -= Time.deltaTime;
-        }
-        else if(FoundPlayerInSkillRange())// 技能攻击
+        if(skillCoolDown <= 0 && FoundPlayerInSkillRange()) // 技能攻击
         {
             transform.LookAt(attackTarget.transform);
             characterStats.isCritical = (Random.value < characterStats.CriticalChance);
@@ -309,11 +312,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
             skillCoolDown = characterStats.SkillCoolDown;
         }
 
-        if (attackCoolDown > 0)
-        {
-            attackCoolDown -= Time.deltaTime;
-        }
-        else if(FoundPlayerInAttackRange()) // 攻击
+        else if(attackCoolDown <= 0 && FoundPlayerInAttackRange()) // 攻击
         {
             transform.LookAt(attackTarget.transform);
             characterStats.isCritical = (Random.value < characterStats.CriticalChance);

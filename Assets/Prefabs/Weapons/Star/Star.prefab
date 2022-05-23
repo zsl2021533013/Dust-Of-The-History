@@ -28598,5 +28598,5 @@ MonoBehaviour:
   g: 4
   firePS: {fileID: 284478466180569578}
   explosionPS: {fileID: 8204732681140258800}
-  damage: 6
+  damage: 12
   damageRange: 4

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205852984a62a2347a4595b6b1ac8cbd, type: 3}
   m_Name: Demon Attack Data
   m_EditorClassIdentifier: 
-  SightRange: 20
+  SightRange: 30
   PatrolSpeed: 3
   PatrolRange: 10
   PatrolCoolDown: 2
-  ChaseSpeed: 5.5
-  AttackRange: 4
-  AttackCoolDown: 5
-  SkillRange: 4
-  SkillCoolDown: 6
+  ChaseSpeed: 6.5
+  AttackRange: 5
+  AttackCoolDown: 8
+  SkillRange: 20
+  SkillCoolDown: 14
   MinDamge: 10
   MaxDamge: 12
   CriticalMultiplier: 2

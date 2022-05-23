@@ -26,6 +26,8 @@ public class PlayerController : Singleton<PlayerController>
 
     private float attackTime;
 
+    public bool isKnockDown = false;
+
     protected override void Awake()
     {
         base.Awake();

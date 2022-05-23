@@ -37,6 +37,11 @@ public class DemonController : EnemyController
 
     GameObject lavaPS2;
 
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     public bool FoundPlayerInAttack2Range()
     {
         var colliders = Physics.OverlapSphere(transform.position, attack2Range);
@@ -121,7 +126,22 @@ public class DemonController : EnemyController
         yield break;
     }
 
-    public override void EnterAttackState()
+    protected override void ExitChaseState()
+    {
+        if (FoundPlayerInAttackRange() || (FoundPlayerInSkillRange() && skillCoolDown <= 0))
+        {
+            agent.destination = transform.position;
+            enemyState = EnemyState.ATTCK;
+        }
+
+        if (!FoundPlayerInSightRange())
+        {
+            agent.destination = transform.position;
+            enemyState = originalState;
+        }
+    }
+
+    protected override void EnterAttackState()
     {
         base.EnterAttackState();
 
@@ -136,6 +156,21 @@ public class DemonController : EnemyController
             animator.SetBool("Critical", characterStats.isCritical);
             animator.SetTrigger("Attack2");
             attack2CoolDown = Attack2CoolDown;
+        }
+    }
+
+    public override void ExitAttackState()
+    {
+        if (!FoundPlayerInAttackRange() && !(FoundPlayerInSkillRange() && skillCoolDown <= 0))
+        {
+            if (FoundPlayerInSightRange())
+            {
+                enemyState = EnemyState.CHASE;
+            }
+            else
+            {
+                enemyState = originalState;
+            }
         }
     }
 }
