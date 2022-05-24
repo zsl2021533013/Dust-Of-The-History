@@ -17,19 +17,19 @@ public class MachanicalGolem : EnemyController
 
     public float dotThreshold;
 
+    public float rotSpeed;
+
     public GameObject flameThrowerPS;
 
     public GameObject gunShotPS;
 
-    [Space(10)]
-
     [Header("Skill Information")]
-
-    public const float Skill2CoolDown = 18.0f;
 
     public int skill2Damage;
 
     public float skill2Range;
+
+    public float Skill2CoolDown = 18.0f;
 
     public GameObject powerDrawPS;
 
@@ -69,9 +69,11 @@ public class MachanicalGolem : EnemyController
     IEnumerator FlameThrowerPS()
     { 
         StartCoroutine("BurnPlayer");
+        StartCoroutine("FacingTowardsPlayerPS");
         flameThrowerPS.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         StopCoroutine("BurnPlayer");
+        StopCoroutine("FacingTowardsPlayerPS");
         flameThrowerPS.SetActive(false);
         yield break;
     }
@@ -80,9 +82,11 @@ public class MachanicalGolem : EnemyController
     {
         yield return new WaitForSeconds(0.5f);
         StartCoroutine("ShootPlayer");
+        StartCoroutine("FacingTowardsPlayerPS");
         gunShotPS.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         StopCoroutine("ShootPlayer");
+        StopCoroutine("FacingTowardsPlayerPS");
         gunShotPS.SetActive(false);
         yield break;
     }
@@ -90,9 +94,24 @@ public class MachanicalGolem : EnemyController
     IEnumerator PowerDrawPS()
     {
         powerDrawPS.SetActive(true);
-        yield return new WaitForSeconds(5.0f);
+        animator.SetBool("IsPowerDraw", true);
+        StartCoroutine("FacingTowardsPlayerPS");
+        yield return new WaitForSeconds(7.0f);
+        animator.SetBool("IsPowerDraw",false);
         powerDrawPS.SetActive(false);
+        StopCoroutine("FacingTowardsPlayerPS");
         yield break;
+    }
+
+    IEnumerator FacingTowardsPlayerPS() // TODO: 效果不好啊
+    {
+        while (true)
+        {
+            Transform targetPos = GameManager.Instance.player.transform;
+            yield return new WaitForSeconds(0.3f);
+            Quaternion targetRot = Quaternion.LookRotation(targetPos.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
+        }
     }
 
     IEnumerator BurnPlayer()
@@ -141,7 +160,7 @@ public class MachanicalGolem : EnemyController
 
     protected override void ExitChaseState()
     {
-        if (FoundPlayerInAttackRange() || (FoundPlayerInSkillRange() && skillCoolDown <= 0) || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0))
+        if (FoundPlayerInAttackRange() || FoundPlayerInSkillRange() || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0))
         {
             agent.destination = transform.position;
             enemyState = EnemyState.ATTCK;
@@ -167,14 +186,14 @@ public class MachanicalGolem : EnemyController
             transform.LookAt(attackTarget.transform);
             characterStats.isCritical = (Random.value < characterStats.CriticalChance);
             animator.SetBool("Critical", characterStats.isCritical);
-            animator.SetTrigger("Skill2");
+            animator.SetTrigger("Skill2Attack");
             skill2CoolDown = Skill2CoolDown;
         }
     }
 
     public override void ExitAttackState()
     {
-        if (!(FoundPlayerInAttackRange() || (FoundPlayerInSkillRange() && skillCoolDown <= 0) || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0)))
+        if (!(FoundPlayerInAttackRange() || FoundPlayerInSkillRange() || (FoundPlayerInSkill2Range() && skill2CoolDown <= 0)))
         {
             if (FoundPlayerInSightRange())
             {

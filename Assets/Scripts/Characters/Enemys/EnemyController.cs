@@ -46,6 +46,10 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
 
     protected bool isIdleBattle, isWalk, isChase, isFollow, isDie = false;
 
+    protected const float turnSmoothTime = 0.1f;
+
+    protected float turnSmoothVelocity = 0.0f;
+
     protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 205852984a62a2347a4595b6b1ac8cbd, type: 3}
   m_Name: MechanicalGolem Attack Data
   m_EditorClassIdentifier: 
-  SightRange: 30
+  SightRange: 40
   PatrolSpeed: 4
   PatrolRange: 30
   PatrolCoolDown: 2
