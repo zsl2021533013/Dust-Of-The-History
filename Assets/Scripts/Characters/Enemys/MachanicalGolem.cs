@@ -7,25 +7,13 @@ public class MachanicalGolem : EnemyController
 {
     [Header("Attack 1 & 2 Information")]
 
-    public int minFlameDamage;
-
-    public int maxFlameDamage;
-
-    public int minShootDamage;
-    
-    public int maxShootDamage;
-
-    public float dotThreshold;
-
     public float rotSpeed;
 
     public GameObject flameThrowerPS;
 
-    public GameObject gunShotPS;
+    public GameObject groundCrackPS;
 
     [Header("Skill Information")]
-
-    public int skill2Damage;
 
     public float skill2Range;
 
@@ -51,14 +39,22 @@ public class MachanicalGolem : EnemyController
         return false;
     }
 
-    public override void Hit()
+    public void SkillHit()
     {
         StartCoroutine(FlameThrowerPS());
     }
 
-    public void SkillHit()
+    public override void Hit() 
     {
-        StartCoroutine(GunShotPS());
+        StartCoroutine(GroundCrackPS());
+
+        if (attackTarget == null) return;
+        if (!FoundPlayerInAttackRange()) return;
+
+        var targetStats = attackTarget.GetComponent<CharacterStats>();
+        characterStats.TakeDamage(characterStats, targetStats);
+
+        attackTarget.GetComponent<Animator>().SetTrigger("Knockdown");
     }
 
     public void Skill2Hit()
@@ -68,26 +64,19 @@ public class MachanicalGolem : EnemyController
 
     IEnumerator FlameThrowerPS()
     { 
-        StartCoroutine("BurnPlayer");
         StartCoroutine("FacingTowardsPlayerPS");
         flameThrowerPS.SetActive(true);
         yield return new WaitForSeconds(2.0f);
-        StopCoroutine("BurnPlayer");
         StopCoroutine("FacingTowardsPlayerPS");
         flameThrowerPS.SetActive(false);
         yield break;
     }
 
-    IEnumerator GunShotPS()
+    IEnumerator GroundCrackPS()
     {
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine("ShootPlayer");
-        StartCoroutine("FacingTowardsPlayerPS");
-        gunShotPS.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        StopCoroutine("ShootPlayer");
-        StopCoroutine("FacingTowardsPlayerPS");
-        gunShotPS.SetActive(false);
+        groundCrackPS.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        groundCrackPS.SetActive(false);
         yield break;
     }
 
@@ -111,50 +100,6 @@ public class MachanicalGolem : EnemyController
             yield return new WaitForSeconds(0.3f);
             Quaternion targetRot = Quaternion.LookRotation(targetPos.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
-        }
-    }
-
-    IEnumerator BurnPlayer()
-    {
-        while (true)
-        {
-            if (!GameManager.Instance.gameObject)
-            {
-                yield break;
-            }
-
-            Vector3 dir = GameManager.Instance.player.transform.position - transform.position;
-            dir.y = 0;
-            dir.Normalize();
-
-            if (Vector3.Dot(dir, transform.forward) > dotThreshold && FoundPlayerInAttackRange()) // 如果此时在扇形范围内
-            {
-                GameManager.Instance.characterStats.TakeDamage((int)Random.Range(minFlameDamage, maxFlameDamage), GameManager.Instance.characterStats);
-            }
-
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    IEnumerator ShootPlayer()
-    {
-        while (true)
-        {
-            if (!GameManager.Instance.gameObject)
-            {
-                yield break;
-            }
-
-            Vector3 dir = GameManager.Instance.player.transform.position - transform.position;
-            dir.y = 0;
-            dir.Normalize();
-
-            if (Vector3.Dot(dir, transform.forward) > dotThreshold && FoundPlayerInSkillRange()) // 如果此时在扇形范围内
-            {
-                GameManager.Instance.characterStats.TakeDamage((int)Random.Range(minShootDamage, maxShootDamage), GameManager.Instance.characterStats);
-            }
-
-            yield return new WaitForSeconds(0.1f);
         }
     }
 
