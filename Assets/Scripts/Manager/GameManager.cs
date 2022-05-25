@@ -53,3 +53,5 @@ public class GameManager : Singleton<GameManager>
         }
     }
 }
+
+//test by xialjx
