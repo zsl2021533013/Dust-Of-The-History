@@ -32,7 +32,7 @@ public class MachanicalGolem : EnemyController
             if (collider.CompareTag("Player"))
             {
                 attackTarget = collider.gameObject;
-                return true;
+                return !FoundPlayerInAttackRange();
             }
         }
 
@@ -150,4 +150,10 @@ public class MachanicalGolem : EnemyController
             }
         }
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position, 6.0f);
+    //}
 }
