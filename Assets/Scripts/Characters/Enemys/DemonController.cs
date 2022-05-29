@@ -37,11 +37,6 @@ public class DemonController : EnemyController
 
     GameObject lavaPS2;
 
-    protected override void Update()
-    {
-        base.Update();
-    }
-
     public bool FoundPlayerInAttack2Range()
     {
         var colliders = Physics.OverlapSphere(transform.position, attack2Range);

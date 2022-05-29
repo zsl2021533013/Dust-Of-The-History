@@ -97,9 +97,9 @@ public class MachanicalGolem : EnemyController
         while (true)
         {
             Transform targetPos = GameManager.Instance.player.transform;
-            yield return new WaitForSeconds(0.3f);
             Quaternion targetRot = Quaternion.LookRotation(targetPos.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
+            yield return null;
         }
     }
 
