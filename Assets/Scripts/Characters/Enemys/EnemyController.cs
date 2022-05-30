@@ -72,11 +72,6 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         GameManager.Instance.RigisterObserver(this);
     }
 
-    //void OnEnable()
-    //{
-
-    //}
-
     void OnDisable()
     {
         if (GameManager.Instance == null)

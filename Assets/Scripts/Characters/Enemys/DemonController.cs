@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class DemonController : EnemyController
 {
-    public const float Attack2CoolDown = 8.0f;
+    public float Attack2CoolDown;
 
-    public float attack2Range = 5.0f;
+    public float attack2Range;
 
-    public float attack2CoolDown = 0.0f;
+    private float attack2CoolDown = 0.0f;
 
     public GameObject slashPS1; // 攻击特效
 

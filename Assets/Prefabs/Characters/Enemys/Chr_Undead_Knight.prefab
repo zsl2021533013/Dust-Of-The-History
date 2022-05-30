@@ -6339,8 +6339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
+  KickCoolDown: 4
   kickRange: 1.6
-  kickCoolDown: 0
   kickForce: 20
   slashPS1: {fileID: 125056145011365688}
   slashPS2: {fileID: 8180807288259888917}

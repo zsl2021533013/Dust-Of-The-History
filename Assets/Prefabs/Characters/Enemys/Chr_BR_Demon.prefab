@@ -16703,8 +16703,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
+  Attack2CoolDown: 8
   attack2Range: 3.5
-  attack2CoolDown: 6
   slashPS1: {fileID: 5124900750421766155}
   slashPS2: {fileID: 5124900750540626980}
   lavaPS1Prefab: {fileID: 640899656056295134}
