@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class RedDemonController : EnemyController
 {
-    public const float Attack2CoolDown = 2.0f;
+    public float Attack2CoolDown;
 
-    public float attack2Range = 1.3f;
+    public float attack2Range;
 
-    public float attack2CoolDown = 3.0f;
+    [HideInInspector]
+    public float attack2CoolDown;
 
-    public GameObject slashPS1;
+    public GameObject groundCrackPS;
 
-    public GameObject slashPS2;
+    public GameObject rockPS;
 
     public bool FoundPlayerInAttack2Range() 
     {
@@ -32,8 +33,6 @@ public class RedDemonController : EnemyController
 
     public override void Hit()
     {
-        //StartCoroutine(SlashPS1());
-
         if (attackTarget == null) return;
         if (!transform.IsFacingTarget(attackTarget.transform)) return; 
         if (!FoundPlayerInAttackRange()) return; 
@@ -42,14 +41,22 @@ public class RedDemonController : EnemyController
         characterStats.TakeDamage(characterStats, targetStats);
     }
 
-    public void SkillHit()
+    public void SkillAttack()
     {
-        
+        StartCoroutine(RockPS());
+
+        if (attackTarget == null) return;
+        if (!FoundPlayerInAttack2Range()) return;
+
+        var targetStats = attackTarget.GetComponent<CharacterStats>();
+        characterStats.TakeDamage(characterStats, targetStats);
+
+        attackTarget.GetComponent<Animator>().SetTrigger("Knockdown");
     }
 
     public void Hit2()
     {
-        //StartCoroutine(SlashPS2());
+        StartCoroutine(GroundCrackPS());
 
         if (attackTarget == null) return;
         if (!transform.IsFacingTarget(attackTarget.transform)) return;
@@ -58,22 +65,22 @@ public class RedDemonController : EnemyController
         var targetStats = attackTarget.GetComponent<CharacterStats>();
         characterStats.TakeDamage(characterStats, targetStats);
 
-        attackTarget.GetComponent<Animator>().SetTrigger("KnockDown");
+        attackTarget.GetComponent<Animator>().SetTrigger("Hit");
     }
 
-    IEnumerator SlashPS1()
+    IEnumerator GroundCrackPS()
     {
-        slashPS1.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        slashPS1.SetActive(false);
+        groundCrackPS.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        groundCrackPS.SetActive(false);
         yield break;
     }
 
-    IEnumerator SlashPS2()
+    IEnumerator RockPS()
     {
-        slashPS2.SetActive(true);
-        yield return new WaitForSeconds(0.2f);
-        slashPS2.SetActive(false);
+        rockPS.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        rockPS.SetActive(false);
         yield break;
     }
 
