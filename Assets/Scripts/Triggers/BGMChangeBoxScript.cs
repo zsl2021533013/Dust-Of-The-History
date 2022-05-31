@@ -6,7 +6,7 @@ public class BGMChangeBoxScript : MonoBehaviour
 {
     [SerializeField]
     AudioClip m_audioclip;
-
+    
     private bool is_Boom = false;
 
     //change bgm 
