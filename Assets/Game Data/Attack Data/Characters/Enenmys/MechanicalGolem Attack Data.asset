@@ -18,9 +18,9 @@ MonoBehaviour:
   PatrolCoolDown: 2
   ChaseSpeed: 6
   AttackRange: 4
-  AttackCoolDown: 10
-  SkillRange: 15
-  SkillCoolDown: 14
+  AttackCoolDown: 6
+  SkillRange: 12
+  SkillCoolDown: 10
   MinDamge: 20
   MaxDamge: 35
   CriticalMultiplier: 2

@@ -17,13 +17,15 @@ public class RedDemon2Controller : DemonController
 
     public GameObject wildFirePS;
 
+    public GameObject rockPS;
+
+    public GameObject ritualCirclePS;
+
     public float Attack3CoolDown;
 
     public float attack3Range;
 
     private float attack3CoolDown;
-
-    public GameObject rockPS;
 
     Vector3 skeletonPos;
 
@@ -45,6 +47,7 @@ public class RedDemon2Controller : DemonController
 
     public void SummonSkeleton() // ÖÆÔì÷¼÷Ã±ø
     {
+        StartCoroutine(RitualCirclePS());
         for (int i = 0; i < skeletonAmount; i++)
         {
             float randomX = GameManager.Instance.player.transform.position.x + offsetFactor * (Random.value - 0.5f);
@@ -59,31 +62,43 @@ public class RedDemon2Controller : DemonController
                 return;
             }
 
-            StartCoroutine(WildFirePS());
             int type = (int)Random.Range(1, 4);
-            switch (type)
-            {
-                case 1:
-                    Instantiate(skeletonPrefab1, skeletonPos, Quaternion.identity);
-                    break;
-                case 2:
-                    Instantiate(skeletonPrefab2, skeletonPos, Quaternion.identity);
-                    break;
-                case 3:
-                    Instantiate(skeletonPrefab3, skeletonPos, Quaternion.identity);
-                    break;
-                default:
-                    Instantiate(skeletonPrefab3, skeletonPos, Quaternion.identity);
-                    break;
-            }
+            StartCoroutine(WildFirePS(type));
+            
         }
     }
 
-    IEnumerator WildFirePS()
+    IEnumerator RitualCirclePS()
     {
+        GameObject tmp = 
+            Instantiate(ritualCirclePS, GameManager.Instance.player.transform.position, Quaternion.identity);
+        tmp.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        Destroy(tmp);
+    }
+
+    IEnumerator WildFirePS(int t)
+    {
+        yield return new WaitForSeconds(2.0f);
         GameObject tmp = Instantiate(wildFirePS, skeletonPos, Quaternion.identity);
         tmp.SetActive(true);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
+        switch (t)
+        {
+            case 1:
+                Instantiate(skeletonPrefab1, skeletonPos, Quaternion.identity);
+                break;
+            case 2:
+                Instantiate(skeletonPrefab2, skeletonPos, Quaternion.identity);
+                break;
+            case 3:
+                Instantiate(skeletonPrefab3, skeletonPos, Quaternion.identity);
+                break;
+            default:
+                Instantiate(skeletonPrefab3, skeletonPos, Quaternion.identity);
+                break;
+        }
+        yield return new WaitForSeconds(1.0f);
         Destroy(tmp);
     }
 

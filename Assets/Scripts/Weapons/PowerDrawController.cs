@@ -9,20 +9,11 @@ public class PowerDrawController : MonoBehaviour
 
     public float rotSpeed;
 
-    private void Start()
+    void Update()
     {
-        StartCoroutine("FacingTowardsPlayerPS");
-    }
-
-    IEnumerator FacingTowardsPlayerPS()
-    {
-        while (true)
-        {
-            Transform targetPos = GameManager.Instance.player.transform;
-            Quaternion targetRot = Quaternion.LookRotation(targetPos.position - transform.position);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
-            yield return null;
-        }
+        Transform targetPos = GameManager.Instance.player.transform;
+        Quaternion targetRot = Quaternion.LookRotation(targetPos.position - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
     }
 
     private void OnParticleCollision(GameObject other)
