@@ -85,14 +85,14 @@ public class MachanicalGolemController : EnemyController
         powerDrawPS.SetActive(true);
         animator.SetBool("IsPowerDraw", true);
         StartCoroutine("FacingTowardsPlayerPS");
-        yield return new WaitForSeconds(7.0f);
+        yield return new WaitForSeconds(12.0f);
         animator.SetBool("IsPowerDraw",false);
         powerDrawPS.SetActive(false);
         StopCoroutine("FacingTowardsPlayerPS");
         yield break;
     }
 
-    IEnumerator FacingTowardsPlayerPS() // TODO: 效果不好啊
+    IEnumerator FacingTowardsPlayerPS() 
     {
         while (true)
         {
@@ -150,10 +150,4 @@ public class MachanicalGolemController : EnemyController
             }
         }
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(transform.position, 6.0f);
-    //}
 }

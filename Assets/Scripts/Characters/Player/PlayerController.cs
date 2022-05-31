@@ -134,7 +134,7 @@ public class PlayerController : Singleton<PlayerController>
         if(enemy != null)
         {
             attackTarget = enemy;
-            agent.stoppingDistance = characterStats.AttackRange + StoppingDistance;
+            agent.stoppingDistance = characterStats.AttackRange + StoppingDistance + Mathf.Max(enemy.transform.localScale.x - 2, 0);
             characterStats.isCritical = (UnityEngine.Random.value < characterStats.CriticalChance);
             StartCoroutine(MoveToAttackEnemy());
         }
