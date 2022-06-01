@@ -5,14 +5,17 @@ using UnityEngine.AI;
 
 public class TriggerController : MonoBehaviour
 {
-    InteriorController[] interiorController;
-
     [Space(10)]
     [Header("1.基本设置")]
     public GameObject handle;
 
-    float triggerTime = 0.0f;
+    public GameObject doorBlock;
 
+    public float openTime=1.0f;
+
+    float passTime = 0.0f;
+
+    [HideInInspector]
     public bool isActive = false; //trigger是否触发
 
     //Trigger的不同功能
@@ -36,14 +39,6 @@ public class TriggerController : MonoBehaviour
 
     void Start()
     {
-        /*if (doorAction)
-        {
-            interiorController = new InteriorController[door.Length];
-            for (int i = 0; i < door.Length; i++) 
-                interiorController[i] = door[i].GetComponent<InteriorController>();
-            Debug.Log(interiorController[0]);
-            Debug.Log(interiorController[1]);
-        }*/
     }
 
     void Update()
@@ -55,8 +50,11 @@ public class TriggerController : MonoBehaviour
         {
             SetTrigger();
             if (doorAction) RotateDoor();
-            triggerTime += Time.deltaTime;
-            if (triggerTime > 10.0f) isActive = false;
+            passTime += Time.deltaTime;
+            if (passTime>openTime && doorBlock)
+                Destroy(doorBlock);
+            if (passTime > 6.0f)
+                isActive = false;
         }
     }
 
@@ -67,19 +65,15 @@ public class TriggerController : MonoBehaviour
     void RotateDoor()
     {
         for (int i = 0; i < door.Length; i++)
-        {
             door[i].transform.rotation = Quaternion.Slerp(door[i].transform.rotation, Quaternion.Euler(0.0f, rotateEndPos[i], 0.0f), doorCloseSpeed * Time.deltaTime);
-            //interiorController[i].BulidNavMesh();
-        }
     }
 
     void OnTriggerStay(Collider other)
     {
-        //Debug.Log(MouseManager.Instance.isClickTrigger);
         if (other.CompareTag("Player") && MouseManager.Instance.isClickTrigger)
         {
             isActive = true;
-            triggerTime = 0.0f;
+            passTime = 0.0f;
         }
     }
 
