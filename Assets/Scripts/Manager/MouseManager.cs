@@ -118,7 +118,7 @@ public class MouseManager : Singleton<MouseManager>
                 isClickTrigger = false;
             }
 
-            /*if (hitInfo.collider.gameObject.CompareTag("Artillery"))
+            if (hitInfo.collider.gameObject.CompareTag("Artillery"))
             {
                 isClickArtillery = true;
                 OnMouseClick?.Invoke(hitInfo.point);
@@ -126,7 +126,7 @@ public class MouseManager : Singleton<MouseManager>
             else
             {
                 isClickArtillery = false;
-            }*/
+            }
         }
     }
 

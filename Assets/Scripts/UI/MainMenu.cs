@@ -12,6 +12,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     public GameObject languageMenu;
 
+    [SerializeField]
+    AudioClip m_mainMenuBGM;
+
     Button newGameBtn;
 
     Button continueBtn;
@@ -40,6 +43,8 @@ public class MainMenu : MonoBehaviour
         languageBtn.onClick.AddListener(LanguageBtn);
 
         director.stopped += NewGameBtn; // 开场动画播出后开始加载游戏
+
+        BGMManager.Instance.PlayBGM(m_mainMenuBGM);
     }
 
     void Update()

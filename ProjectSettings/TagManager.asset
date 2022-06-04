@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - Attackable
   - Trigger
+  - Artillery
   layers:
   - Default
   - TransparentFX

@@ -17,10 +17,6 @@ public class TriggerController : MonoBehaviour
     [Header("1.基本设置")]
     public GameObject handle;
 
-    public GameObject doorBlock;
-
-    public float openTime=1.0f;
-
     float passTime = 0.0f;
 
     [HideInInspector]
@@ -30,11 +26,16 @@ public class TriggerController : MonoBehaviour
 
     [Space(10)]
     [Header("2.开关门")]
+
     public bool doorAction = true;
 
     public GameObject[] door;
 
     public float[] rotateEndPos;
+
+    public GameObject doorBlock;
+
+    public float openTime = 1.0f;
 
     public float doorCloseSpeed = 0.5f; //关门的相对速度
 
@@ -44,8 +45,17 @@ public class TriggerController : MonoBehaviour
 
     public EnemyType enemyType;
 
+    [Space(10)]
+    [Header("4.传送门")]
+    public bool portalLink = false;
+
+    public GameObject portal;
+
+    PortalController portalController;
+
     void Start()
     {
+        portalController = portal.GetComponent<PortalController>();
     }
 
     void Update()
@@ -57,11 +67,16 @@ public class TriggerController : MonoBehaviour
         }
         if (isActive)
         {
-            SetTrigger();
-            if (doorAction) RotateDoor();
             passTime += Time.deltaTime;
-            if (passTime>openTime && doorBlock)
-                Destroy(doorBlock);
+            SetTrigger();
+            if (doorAction)
+            {
+                RotateDoor();
+                if (passTime > openTime && doorBlock)
+                    Destroy(doorBlock);
+            }
+            if (portalLink)
+                portalController.SetTrigger();
             if (passTime > 6.0f)
                 isActive = false;
         }
