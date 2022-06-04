@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class DemonController : EnemyController
 {
-    public const float Attack2CoolDown = 8.0f;
+    public float Attack2CoolDown;
 
-    public float attack2Range = 5.0f;
+    public float attack2Range;
 
-    public float attack2CoolDown = 0.0f;
+    private float attack2CoolDown = 0.0f;
 
     public GameObject slashPS1; // 攻击特效
 
@@ -36,11 +36,6 @@ public class DemonController : EnemyController
     GameObject lavaPS1; // 陨石术特效
 
     GameObject lavaPS2;
-
-    protected override void Update()
-    {
-        base.Update();
-    }
 
     public bool FoundPlayerInAttack2Range()
     {

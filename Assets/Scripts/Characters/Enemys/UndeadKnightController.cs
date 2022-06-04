@@ -5,13 +5,13 @@ using UnityEngine.AI;
 
 public class UndeadKnightController : EnemyController
 {
-    public const float KickCoolDown = 2.0f;
+    public float KickCoolDown;
 
-    public float kickRange = 1.3f;
+    public float kickRange;
 
-    public float kickCoolDown = 3.0f;
+    private float kickCoolDown;
 
-    public float kickForce = 10.0f;
+    public float kickForce;
 
     public GameObject slashPS1;
 

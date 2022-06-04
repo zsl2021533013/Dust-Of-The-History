@@ -16,6 +16,8 @@ public class MouseManager : Singleton<MouseManager>
 
     public RaycastHit hitInfo;
 
+    public bool isClickArtillery;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +62,9 @@ public class MouseManager : Singleton<MouseManager>
                     Cursor.SetCursor(point, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 case "Trigger":
+                    Cursor.SetCursor(point, new Vector2(0, 0), CursorMode.Auto);
+                    break;
+                case "Artillery":
                     Cursor.SetCursor(point, new Vector2(0, 0), CursorMode.Auto);
                     break;
                 default:
@@ -111,6 +116,16 @@ public class MouseManager : Singleton<MouseManager>
             else
             {
                 isClickTrigger = false;
+            }
+
+            if (hitInfo.collider.gameObject.CompareTag("Artillery"))
+            {
+                isClickArtillery = true;
+                OnMouseClick?.Invoke(hitInfo.point);
+            }
+            else
+            {
+                isClickArtillery = false;
             }
         }
     }

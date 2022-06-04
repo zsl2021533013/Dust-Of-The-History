@@ -5,6 +5,14 @@ using UnityEngine.AI;
 
 public class TriggerController : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Knight,
+        Demo,
+        MachineGolem,
+        RedDemo
+    }
+
     [Space(10)]
     [Header("1.基本设置")]
     public GameObject handle;
@@ -34,8 +42,7 @@ public class TriggerController : MonoBehaviour
     [Header("3.敌人死亡才可触发")]
     public bool enemyLink = false;
 
-    [SerializeField]
-    public bool isEnemyDead;
+    public EnemyType enemyType;
 
     void Start()
     {
@@ -44,8 +51,10 @@ public class TriggerController : MonoBehaviour
     void Update()
     {
         if (enemyLink)
-            if (!isEnemyDead)
+        {
+            if (enemyType == EnemyType.Knight && !GameManager.Instance.isKnightDead)
                 return;
+        }
         if (isActive)
         {
             SetTrigger();

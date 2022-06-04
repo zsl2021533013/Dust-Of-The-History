@@ -9,13 +9,13 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject player;
 
-    public bool isKnightDead = false;
+    public bool isKnightDead = false; 
 
-    public bool isDemoDead = false;
+    public bool isDemoDead = false; 
 
-    public bool isMachineGolemDead = false;
+    public bool isMachineGolemDead = false; 
 
-    public bool isRedDemoDead = false;
+    public bool isRedDemoDead = false; 
 
     private CinemachineFreeLook freeLookCamera;
 
@@ -55,5 +55,3 @@ public class GameManager : Singleton<GameManager>
         }
     }
 }
-
-//test by xialjx
