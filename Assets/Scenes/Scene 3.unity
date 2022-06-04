@@ -32295,10 +32295,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3112506475033803135, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112506475033803135, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
       propertyPath: ritualCirclePS
       value: 
       objectReference: {fileID: 1247853121}

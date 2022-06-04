@@ -9,11 +9,13 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject player;
 
-    public bool isDemoDead = false;
+    public bool isKnightDead = false; 
 
-    public bool isMachineGolemDead = false;
+    public bool isDemoDead = false; 
 
-    public bool isRedDemoDead = false;
+    public bool isMachineGolemDead = false; 
+
+    public bool isRedDemoDead = false; 
 
     private CinemachineFreeLook freeLookCamera;
 
