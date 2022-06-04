@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: MechanicalGolem Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 150
-  CurrentHealth: 150
-  BaseDefence: 6
-  CurrentDefence: 6
+  MaxHealth: 80
+  CurrentHealth: 80
+  BaseDefence: 8
+  CurrentDefence: 8
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1

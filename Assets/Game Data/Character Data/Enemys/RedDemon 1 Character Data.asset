@@ -21,4 +21,4 @@ MonoBehaviour:
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 150
+  KillPoint: 100
