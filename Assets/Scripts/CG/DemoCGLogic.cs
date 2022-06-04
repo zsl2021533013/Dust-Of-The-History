@@ -43,11 +43,7 @@ public class DemoCGLogic : MonoBehaviour
             timeLine += Time.deltaTime;
             if (timeLine > 2.0f) fire1.SetActive(true);
             if (timeLine > 3.0f) fire2.SetActive(true);
-            if (timeLine > 4.0f)
-            {
-                lightBall.SetActive(true);
-                cameraManager.ShakeCamera(5.0f);
-            }
+            if (timeLine > 4.0f) lightBall.SetActive(true);
             if (timeLine > 9.0f) 
                 for (int i = 0; i < lightning.Length; i++)
                     if (timeLine > 9.0f + i * 0.1f) lightning[i].SetActive(true);

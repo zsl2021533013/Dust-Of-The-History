@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public GameObject mainCamera;
+    public Transform mainCamera;
 
     public GameObject cgCamera;
 
-    public GameObject[] cameraPos;
+    public Transform[] cameraPos;
 
     public float cgCameraSpeed = 1.0f;
 
@@ -18,15 +18,7 @@ public class CameraManager : MonoBehaviour
 
     bool isBack = false;
 
-    bool isShake = false;
-
     float passTime = 0.0f;
-
-    float maxShakeTime = 0.0f;
-
-    float initialX;
-
-    int shakeDir = 1;
 
     int index;
 
@@ -40,40 +32,23 @@ public class CameraManager : MonoBehaviour
     {
         if (isForward)
         {
-            cgCamera.transform.position = new Vector3(
-                Mathf.Lerp(cgCamera.transform.position.x, cameraPos[index].transform.position.x, cgCameraSpeed * Time.deltaTime),
-                Mathf.Lerp(cgCamera.transform.position.y, cameraPos[index].transform.position.y, cgCameraSpeed * Time.deltaTime),
-                Mathf.Lerp(cgCamera.transform.position.z, cameraPos[index].transform.position.z, cgCameraSpeed * Time.deltaTime));
-            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, cameraPos[index].transform.rotation, 0.5f * Time.deltaTime);
-            if (passTime > 3.0f)
+            passTime += Time.deltaTime;
+            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, cameraPos[index].position, cgCameraSpeed * Time.deltaTime);
+            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, cameraPos[index].rotation, 1.0f * Time.deltaTime);
+            if (passTime > 6.0f)
                 isForward = false;
         }
         if(isBack)
         {
             passTime += Time.deltaTime;
-            cgCamera.transform.position = new Vector3(
-                Mathf.Lerp(cgCamera.transform.position.x, mainCamera.transform.position.x, cgCameraSpeed * Time.deltaTime),
-                Mathf.Lerp(cgCamera.transform.position.y, mainCamera.transform.position.y, cgCameraSpeed * Time.deltaTime),
-                Mathf.Lerp(cgCamera.transform.position.z, mainCamera.transform.position.z, cgCameraSpeed * Time.deltaTime));
-            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, mainCamera.transform.rotation, 1.0f * Time.deltaTime);
-            if (passTime > 10.0f)
+            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, mainCamera.position, cgCameraSpeed * Time.deltaTime);
+            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, mainCamera.rotation, 1.0f * Time.deltaTime);
+            if (passTime > 4.0f)
             {
                 isBack = false;
                 cgCamera.SetActive(false);
             }    
         }
-        /*if(isShake)
-        {
-            passTime += Time.deltaTime;
-
-            if ((shakeDir == 1 && cgCamera.transform.position.x - initialX < cgCameraShakeRange)
-                || (shakeDir == -1 && initialX - cgCamera.transform.position.x  < cgCameraShakeRange)) 
-                    cgCamera.transform.Translate(shakeDir * 1.0f * Time.deltaTime, 0.0f, 0.0f);
-            else
-                shakeDir *= -1;
-            if (passTime > maxShakeTime)
-                isShake = false;
-        }*/
     }
 
     public void BroadcastCG(int id)
@@ -90,13 +65,5 @@ public class CameraManager : MonoBehaviour
     {
         passTime = 0.0f;
         isBack = true;
-    }
-
-    public void ShakeCamera(float maxTime)
-    {
-        initialX = cgCamera.transform.position.x;
-        //passTime = 0.0f;
-        maxShakeTime = maxTime;
-        isShake = true;
     }
 }

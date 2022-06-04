@@ -18,22 +18,28 @@ public enum EnemyType
 public class PortalController : MonoBehaviour
 {
     [Header("Transition Information")]
-
     public string sceneName;
 
     public TransitionType transitionType;
 
     public DestinationTag destinationTag;
 
-    [Header("Link to enemy death")]
+    [Header("Movement")]
 
+    public GameObject portal;
+
+    public GameObject dust;
+
+    public Transform endPos;
+
+    public float portalSpeed = 1.0f;
+
+    [Header("Link to enemy death")]
     public bool enemyLink = false;
 
     public EnemyType enemyType;
 
-    public float endPos = 13.0f;
-
-    public float portalSpeed = 10.0f;
+    float passTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -46,12 +52,13 @@ public class PortalController : MonoBehaviour
     {
         if (enemyLink)
         {
-            if (enemyType == EnemyType.Demo && GameManager.Instance.isDemoDead) 
+            if (enemyType == EnemyType.Demo && GameManager.Instance.isDemoDead)
             {
-                gameObject.transform.position = new Vector3(
-                        gameObject.transform.position.x,
-                        Mathf.Lerp(gameObject.transform.position.y, endPos, portalSpeed * Time.deltaTime),
-                        gameObject.transform.position.z);
+                dust.SetActive(true);
+                passTime += Time.deltaTime;
+                transform.position = Vector3.Lerp(transform.position, endPos.position, portalSpeed * Time.deltaTime);
+                if (passTime > 5.0f)
+                    portal.SetActive(true);
             }
         }
     }
