@@ -267,5 +267,29 @@ public class CharacterStats : MonoBehaviour
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
     }
 
+    public void ApplyDefence(int amount)
+    {
+        CurrentDefence += amount;
+    }
+
+    public void ApplyAttack(int amount)
+    {
+        MinDamge += amount;
+        MaxDamge += amount;
+    }
+
+    public void ApplyCritical(float amount)
+    {
+        CriticalChance += amount;
+    }
+
+    public void ApplyItem(UseableItemData_SO useableItemData)
+    {
+        ApplyHealth(useableItemData.HealthPoint);
+        ApplyDefence(useableItemData.DefencePoint);
+        ApplyAttack(useableItemData.AttackPoint);
+        ApplyCritical(useableItemData.CriticalPoint);
+    }
+
     #endregion
 }
