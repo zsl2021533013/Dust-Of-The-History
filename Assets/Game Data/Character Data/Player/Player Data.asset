@@ -19,6 +19,6 @@ MonoBehaviour:
   MaxLevel: 30
   CurrentLevel: 1
   ExperienceThreshold: 100
-  LevelUpBuff: 0.1
+  LevelUpBuff: 0.3
   CurrentExperiencePoint: 0
   KillPoint: 0

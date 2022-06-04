@@ -86,7 +86,6 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
-
     #region Character combat
 
     public void TakeDamage(CharacterStats attacker, CharacterStats defener)
@@ -145,7 +144,6 @@ public class CharacterStats : MonoBehaviour
         CurrentExperiencePoint -= ExperienceThreshold;
         ExperienceThreshold = (int)(multiplier * ExperienceThreshold);
         
-
         CurrentLevel = Mathf.Clamp(CurrentLevel + 1, 0, MaxLevel);
 
         if (CurrentLevel == MaxLevel) return;
@@ -153,10 +151,10 @@ public class CharacterStats : MonoBehaviour
         MaxHealth = (int)(multiplier * MaxHealth);
         CurrentHealth = MaxHealth;
 
-        MinDamge = templateAttackData.MinDamge + CurrentLevel;
-        MaxDamge = templateAttackData.MaxDamge + CurrentLevel;
+        MinDamge = templateAttackData.MinDamge + 2 * CurrentLevel;
+        MaxDamge = templateAttackData.MaxDamge + 2 * CurrentLevel;
 
-        CurrentDefence = templateCharacterData.BaseDefence + CurrentLevel / 2;
+        CurrentDefence = templateCharacterData.BaseDefence + CurrentLevel;
     }
 
     IEnumerator LevelUpFX()

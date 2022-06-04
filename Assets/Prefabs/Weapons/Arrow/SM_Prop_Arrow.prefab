@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 2
-  damage: 6
+  damage: 12
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &8263175948426061206

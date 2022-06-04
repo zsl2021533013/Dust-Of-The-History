@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: SkeletonBow Character Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 15
-  CurrentHealth: 15
+  MaxHealth: 10
+  CurrentHealth: 10
   BaseDefence: 0
   CurrentDefence: 0
   MaxLevel: 1
@@ -21,4 +21,4 @@ MonoBehaviour:
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 20
+  KillPoint: 35
