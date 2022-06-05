@@ -14,6 +14,9 @@ public class BGMManager : Singleton<BGMManager>
     private float m_cutTime = 0.0f;
 
     [SerializeField]
+    AudioClip m_mainBGM;
+
+    [SerializeField]
     private float CUTTIME = 2.0f;
 
     [SerializeField]
@@ -27,28 +30,37 @@ public class BGMManager : Singleton<BGMManager>
     private bool m_fadingin = false;
     private bool cut = false;
 
+    public void ReturnToMainMusic()
+    {
+        PlayBGM(m_mainBGM);
+    }
+
     public void PlayBGM(AudioClip clip)
     {
-        m_BGMAudioSource.loop = false;
-        if (!m_nowClip)
-        {
-            //if not exist clip then initialize
-            m_nowClip = clip;
-            m_nextClip = clip;
-
-            m_cutting = true;
-            m_fadingin = false ;
-            cut = false;
-            m_BGMAudioSource.volume = MINVOLUME;
-        }
+        if (clip.Equals(m_nowClip)) return;
         else
         {
-            if (m_nowClip == clip) return;
-            m_nextClip = clip;//set the next clip
-            //start change BGM
-            m_cutting = true;
-            m_fadingin = true;
-            cut = false;
+            m_BGMAudioSource.loop = false;
+            if (!m_nowClip)
+            {
+                //if not exist clip then initialize
+                m_nowClip = clip;
+                m_nextClip = clip;
+
+                m_cutting = true;
+                m_fadingin = false;
+                cut = false;
+                m_BGMAudioSource.volume = MINVOLUME;
+            }
+            else
+            {
+                if (m_nowClip == clip) return;
+                m_nextClip = clip;//set the next clip
+                                  //start change BGM
+                m_cutting = true;
+                m_fadingin = true;
+                cut = false;
+            }
         }
     }
 

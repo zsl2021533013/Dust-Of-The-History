@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BGMAudioSource: {fileID: -3133337886527915403}
   m_audioSource: {fileID: 6383502041684185158}
+  m_mainBGM: {fileID: 8300000, guid: 8ab8b25a59eaab24b836ded4be692811, type: 3}
+  CUTTIME: 2
   MAXVOLUME: 0.4
   MINVOLUME: 0
 --- !u!82 &-3133337886527915403
@@ -60,8 +62,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f943407726402f84097a7713c93ddd16, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 8ab8b25a59eaab24b836ded4be692811, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 1

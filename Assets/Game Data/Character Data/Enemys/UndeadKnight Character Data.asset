@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: UndeadKnight Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 45
-  CurrentHealth: 45
-  BaseDefence: 3
-  CurrentDefence: 3
+  MaxHealth: 60
+  CurrentHealth: 60
+  BaseDefence: 5
+  CurrentDefence: 5
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 60
+  KillPoint: 80

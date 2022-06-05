@@ -343,6 +343,7 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         agent.radius = 0;
         agent.isStopped = true;
         collider.enabled = false;
+        BGMManager.Instance.ReturnToMainMusic();
         Destroy(gameObject, 2.0f);
     }
 

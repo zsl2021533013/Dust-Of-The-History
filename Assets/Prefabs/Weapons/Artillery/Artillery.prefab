@@ -33561,6 +33561,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 3967000639986448926, guid: 9ce3648c2f08c4b4ab3436550f740bdd, type: 3}
   ammoIcon: {fileID: 8193591016108466986}
   FireCoolDown: 5
+  cannon: {fileID: 8300000, guid: 1499c314106cf3048a0ad1830f83d094, type: 3}
 --- !u!135 &2807056709580277290
 SphereCollider:
   m_ObjectHideFlags: 0

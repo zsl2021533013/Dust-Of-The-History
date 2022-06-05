@@ -19,9 +19,9 @@ MonoBehaviour:
   ChaseSpeed: 6
   AttackRange: 4
   AttackCoolDown: 8
-  SkillRange: 20
+  SkillRange: 30
   SkillCoolDown: 30
-  MinDamge: 16
-  MaxDamge: 20
+  MinDamge: 25
+  MaxDamge: 35
   CriticalMultiplier: 2
   CriticalChance: 0.4

@@ -64,6 +64,10 @@ public class TriggerController : MonoBehaviour
         {
             if (enemyType == EnemyType.Knight && !GameManager.Instance.isKnightDead)
                 return;
+            if (enemyType == EnemyType.Demo && !GameManager.Instance.isDemoDead)
+                return;
+            if (enemyType == EnemyType.MachineGolem && !GameManager.Instance.isMachineGolemDead)
+                return;
         }
         if (isActive)
         {
