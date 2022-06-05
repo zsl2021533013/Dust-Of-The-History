@@ -6,4 +6,7 @@ using UnityEngine;
 public class UseableItemData_SO : ScriptableObject
 {
     public int HealthPoint;
+    public int DefencePoint;
+    public int AttackPoint;
+    public float CriticalPoint;
 }

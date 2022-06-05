@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class ValidAttackJudgeExtension
 {
-    private const float dotThreshold = 0.85f; // ¼´30¶È
+    private const float dotThreshold = 0.8f; // ¼´30¶È
 
     public static bool IsFacingTarget(this Transform transform, Transform target)
     {
