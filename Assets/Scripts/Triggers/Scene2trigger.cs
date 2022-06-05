@@ -22,6 +22,7 @@ public class Scene2trigger : MonoBehaviour
         {
             isActive = true;
             isUsed = true;
+            tag = "Ground";
             BGMManager.Instance.PlayBGM(audioClip);
         }
     }
