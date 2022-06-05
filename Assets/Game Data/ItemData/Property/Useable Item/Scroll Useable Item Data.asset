@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoint: 0
   DefencePoint: 0
-  AttackPoint: 0
+  AttackPoint: 1
   CriticalPoint: 0

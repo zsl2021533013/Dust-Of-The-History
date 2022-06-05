@@ -71,6 +71,8 @@ public class InventoryManager : Singleton<InventoryManager>
 
     public TMP_Text attackText;
 
+    public TMP_Text criticalText;
+
     public TMP_Text defenceText;
 
     [Space(10)]
@@ -138,6 +140,7 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         healthText.text = "Health : " + GameManager.Instance.characterStats.CurrentHealth;
         attackText.text = "ATK : " + GameManager.Instance.characterStats.MinDamge + "- " + GameManager.Instance.characterStats.MaxDamge;
+        criticalText.text = "Critical : " + GameManager.Instance.characterStats.CriticalChance * 100 + "%";
         defenceText.text = "Defence : " + GameManager.Instance.characterStats.CurrentDefence;
     }
 

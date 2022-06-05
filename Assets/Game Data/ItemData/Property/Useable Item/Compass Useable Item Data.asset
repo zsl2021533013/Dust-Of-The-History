@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Compass Useable Item Data
   m_EditorClassIdentifier: 
   HealthPoint: 0
-  DefencePoint: 0
+  DefencePoint: 1
   AttackPoint: 0
   CriticalPoint: 0

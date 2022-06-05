@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Scroll Item Data
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  itemIcon: {fileID: 0}
-  itemAmount: 0
-  itemDescription: 
+  itemName: "\u6218\u6597\u5377\u8F74"
+  itemIcon: {fileID: 21300000, guid: 8d827c1788896064890e45c686ea5750, type: 3}
+  itemAmount: 1
+  itemDescription: "\u8BB0\u5F55\u77EE\u4EBA\u6218\u6597\u6280\u827A\u7684\u5377\u8F74\uFF0C\u4E3A\u6574\u4E2A\u77EE\u4EBA\u738B\u56FD\u7684\u7E41\u8363\u5960\u5B9A\u57FA\u77F3\uFF0C\u4E0D\u8FC7...\u5B83\u4F9D\u7136\u65E0\u6CD5\u963B\u6B62\u77EE\u4EBA\u672C\u8EAB\u7684\u8D2A\u5A6A\uFF0C\u76F4\u5230\u706B\u7130\u4E4B\u591C\u7684\u6765\u4E34...\n\u4F7F\u7528\u540E\u63D0\u5347\u653B\u51FB\u529B"
   stackable: 0
   weaponPrefab: {fileID: 0}
   attackData: {fileID: 0}
   overrideController: {fileID: 0}
   armorPrefab: {fileID: 0}
   characterData: {fileID: 0}
-  useableItemData: {fileID: 0}
+  useableItemData: {fileID: 11400000, guid: 34c3aabed4ee8bf4cab0ca624427fe2c, type: 2}
