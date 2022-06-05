@@ -6,6 +6,9 @@ public class BGMChangeBoxScript : MonoBehaviour
 {
     [SerializeField]
     AudioClip m_audioclip;
+
+    [SerializeField]
+    GameObject m_VirtualWall;
     
     private bool is_Boom = false;
 
@@ -16,6 +19,10 @@ public class BGMChangeBoxScript : MonoBehaviour
         {
             BGMManager.Instance.PlayBGM(m_audioclip);
             is_Boom = true;
+            if (m_VirtualWall)
+            {
+                m_VirtualWall.SetActive(true);
+            }
         }
     }
 }

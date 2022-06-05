@@ -41,13 +41,13 @@ public class CameraManager : MonoBehaviour
         if(isBack)
         {
             passTime += Time.deltaTime;
-            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, mainCamera.position, cgCameraSpeed * Time.deltaTime);
-            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, mainCamera.rotation, 1.0f * Time.deltaTime);
-            if (passTime > 4.0f)
+            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, mainCamera.position, 2.0f * passTime * cgCameraSpeed * Time.deltaTime);
+            cgCamera.transform.rotation = Quaternion.Lerp(cgCamera.transform.rotation, mainCamera.rotation, 2.0f * passTime * cgCameraSpeed * Time.deltaTime);
+            if (Vector3.Distance(cgCamera.transform.position, mainCamera.position)<0.3f) 
             {
                 isBack = false;
                 cgCamera.SetActive(false);
-            }    
+            }
         }
     }
 

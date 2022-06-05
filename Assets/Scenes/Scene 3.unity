@@ -12444,7 +12444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231930500714319832, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.2463665
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 4231930500714319832, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12452,7 +12452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231930500714319832, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.32141
+      value: 27.6
       objectReference: {fileID: 0}
     - target: {fileID: 4231930500714319832, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17364,11 +17364,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4666272843087238, guid: 3c7f4af00f96d8d468b62ffa1f95c15f, type: 3}
   m_PrefabInstance: {fileID: 1230580835}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1247853121 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1086178704094582197, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-  m_PrefabInstance: {fileID: 916823055056225764}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1250291034
 PrefabInstance:
@@ -32218,34 +32213,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 997018972353544147, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: startDelay.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 997018972353544147, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 997018972353544147, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 997018972353544147, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087748994551125209, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087748994551125209, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1087748994551125209, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3053941955857974102, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
       propertyPath: m_Name
       value: Character_BR_RedDemon 2
@@ -32294,10 +32261,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3112506475033803135, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
-      propertyPath: ritualCirclePS
-      value: 
-      objectReference: {fileID: 1247853121}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbf2efb51a8c2a442861049a12fb82dc, type: 3}
 --- !u!4 &6085681999679365276
@@ -32423,6 +32386,12 @@ MonoBehaviour:
   sceneName: 
   transitionType: 0
   destinationTag: 1
+  portal: {fileID: 0}
+  dust: {fileID: 0}
+  endPos: {fileID: 0}
+  portalSpeed: 1
+  enemyLink: 0
+  enemyType: 0
 --- !u!1 &6869725825984281122
 GameObject:
   m_ObjectHideFlags: 0
