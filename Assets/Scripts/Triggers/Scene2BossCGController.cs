@@ -24,14 +24,14 @@ public class Scene2BossCGController : MonoBehaviour
     {
         if (!m_start && !end)
         {
-            m_cameraManager.BroadcastCG(0);
+            m_cameraManager.BroadcastCG(0,6.0f,1.0f);
             m_start = true;
         }
     }
 
     private void M_playableDirector_stopped(PlayableDirector obj)
     {
-        m_cameraManager.EndCG();
+        m_cameraManager.EndCG(4.0f,1.0f);
     }
 
     private void Update()

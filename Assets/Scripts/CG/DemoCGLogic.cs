@@ -54,7 +54,7 @@ public class DemoCGLogic : MonoBehaviour
             if (timeLine > 11.0f)
             {
                 isStart = false;
-                cameraManager.EndCG();
+                cameraManager.EndCG(3.0f, 1.0f);
                 navMeshAgent.isStopped = false;
             }
         }
