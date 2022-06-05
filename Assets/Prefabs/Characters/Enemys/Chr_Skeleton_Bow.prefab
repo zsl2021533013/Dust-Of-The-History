@@ -1476,7 +1476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5fd980e58c9c941aeca5b986c5e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_agent: {fileID: 4549126821741467474}
+  m_enemyController: {fileID: 4549126821741467486}
   m_audioSource: {fileID: 147917058855262475}
   m_walk: {fileID: 8300000, guid: 74a7dab6eb5cc164c86bfd18e6bcbc09, type: 3}
 --- !u!82 &147917058855262475

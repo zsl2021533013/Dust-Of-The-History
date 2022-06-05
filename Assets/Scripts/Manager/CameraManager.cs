@@ -10,15 +10,15 @@ public class CameraManager : MonoBehaviour
 
     public Transform[] cameraPos;
 
-    float cgCameraSpeed = 1.0f;
+    public float cgCameraSpeed = 1.0f;
+
+    public float cgCameraShakeRange = 0.1f;
 
     bool isForward = false;
 
     bool isBack = false;
 
     float passTime = 0.0f;
-
-    float forwardTime, backTime;
 
     int index;
 
@@ -35,43 +35,35 @@ public class CameraManager : MonoBehaviour
             passTime += Time.deltaTime;
             cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, cameraPos[index].position, cgCameraSpeed * Time.deltaTime);
             cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, cameraPos[index].rotation, 1.0f * Time.deltaTime);
-            if (passTime > forwardTime)
+            if (passTime > 6.0f)
                 isForward = false;
         }
         if(isBack)
         {
             passTime += Time.deltaTime;
-            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, mainCamera.position, cgCameraSpeed * Time.deltaTime);
-            cgCamera.transform.rotation = Quaternion.Slerp(cgCamera.transform.rotation, mainCamera.rotation, 1.0f * Time.deltaTime);
-            if (passTime > backTime)
+            cgCamera.transform.position = Vector3.Lerp(cgCamera.transform.position, mainCamera.position, 2.0f * passTime * cgCameraSpeed * Time.deltaTime);
+            cgCamera.transform.rotation = Quaternion.Lerp(cgCamera.transform.rotation, mainCamera.rotation, 2.0f * passTime * cgCameraSpeed * Time.deltaTime);
+            if (Vector3.Distance(cgCamera.transform.position, mainCamera.position)<0.3f) 
             {
                 isBack = false;
                 cgCamera.SetActive(false);
-            }    
+            }
         }
     }
 
-    public void BroadcastCG(int id, float t, float speed)
+    public void BroadcastCG(int id)
     {
         passTime = 0.0f;
-        index = id; forwardTime = t; cgCameraSpeed = speed;
+        index = id;
         cgCamera.transform.position = mainCamera.transform.position;
         cgCamera.transform.rotation = mainCamera.transform.rotation;
         cgCamera.SetActive(true);
         isForward = true;
     }
 
-    public void MoveCG(int id, float t, float speed)
+    public void EndCG()
     {
         passTime = 0.0f;
-        index = id; forwardTime = t; cgCameraSpeed = speed;
-        isForward = true;
-    }
-
-    public void EndCG(float t, float speed)
-    {
-        passTime = 0.0f;
-        backTime = t; cgCameraSpeed = speed;
         isBack = true;
     }
 }

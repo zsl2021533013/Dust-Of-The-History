@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class SkeletonStepSound : MonoBehaviour
 {
     [SerializeField]
-    NavMeshAgent m_agent;
+    EnemyController m_enemyController;
 
     [SerializeField]
     AudioSource m_audioSource;
@@ -19,7 +18,7 @@ public class SkeletonStepSound : MonoBehaviour
 
     private void Update()
     {
-        if(m_agent.velocity.sqrMagnitude > 0.3f)
+        if(m_enemyController.enemyState == EnemyState.CHASE)
         {
             if (m_walkTimeNow > m_walkTime)
             {
