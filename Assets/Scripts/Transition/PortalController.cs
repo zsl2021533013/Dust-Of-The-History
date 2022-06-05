@@ -41,10 +41,13 @@ public class PortalController : MonoBehaviour
 
     float passTime = 0.0f;
 
+    [Header("Link to trigger")]
+    public bool isActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -53,14 +56,9 @@ public class PortalController : MonoBehaviour
         if (enemyLink)
         {
             if (enemyType == EnemyType.Demo && GameManager.Instance.isDemoDead)
-            {
-                dust.SetActive(true);
-                passTime += Time.deltaTime;
-                transform.position = Vector3.Lerp(transform.position, endPos.position, portalSpeed * Time.deltaTime);
-                if (passTime > 5.0f)
-                    portal.SetActive(true);
-            }
+                Action();
         }
+        if (isActive) Action();
     }
 
     private void OnTriggerEnter(Collider other) // 不能用协程，因为会开很多个出来！
@@ -69,5 +67,19 @@ public class PortalController : MonoBehaviour
         {
             TranstionManager.Instance.TransitionToDestination(this);
         }
+    }
+
+    void Action()
+    {
+        dust.SetActive(true);
+        passTime += Time.deltaTime;
+        transform.position = Vector3.Lerp(transform.position, endPos.position, portalSpeed * Time.deltaTime);
+        if (passTime > 5.0f)
+            portal.SetActive(true);
+    }
+
+    public void SetTrigger()
+    {
+        isActive = true;
     }
 }
