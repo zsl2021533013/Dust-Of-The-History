@@ -5,6 +5,13 @@ using UnityEngine.AI;
 
 public class DemonController : EnemyController
 {
+    [SerializeField]
+    GameObject Wall;
+
+    [SerializeField]
+    AudioClip m_deathThenRiseSound;
+    private bool m_played = false;
+
     public float Attack2CoolDown;
 
     public float attack2Range;
@@ -172,7 +179,10 @@ public class DemonController : EnemyController
     protected override void EnterDeadState()
     {
         base.EnterDeadState();
+        Wall.SetActive(false);
         BGMManager.Instance.ReturnToMainMusic();
+        if(!m_played) BGMManager.Instance.PlayOneShotWithPitch(m_deathThenRiseSound, 0.3f, 0.6f);
+        m_played = true;
         GameManager.Instance.isDemoDead = true;
     }
 }

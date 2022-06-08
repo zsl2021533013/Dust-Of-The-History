@@ -46,3 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats: {fileID: 0}
   player: {fileID: 0}
+  isKnightDead: 0
+  isDemoDead: 0
+  isMachineGolemDead: 0
+  isRedDemoDead: 0

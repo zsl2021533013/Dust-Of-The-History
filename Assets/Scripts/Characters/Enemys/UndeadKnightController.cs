@@ -17,6 +17,9 @@ public class UndeadKnightController : EnemyController
 
     public GameObject slashPS2;
 
+    [SerializeField]
+    GameObject Wall;
+
     public bool FoundPlayerInKickRange() // Ìß»÷
     {
         var colliders = Physics.OverlapSphere(transform.position, kickRange);
@@ -119,6 +122,7 @@ public class UndeadKnightController : EnemyController
     protected override void EnterDeadState()
     {
         base.EnterDeadState();
+        Wall.SetActive(false);
         BGMManager.Instance.ReturnToMainMusic();
         GameManager.Instance.isKnightDead = true;
     }
