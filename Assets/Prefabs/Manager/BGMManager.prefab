@@ -50,7 +50,7 @@ MonoBehaviour:
   m_audioSource: {fileID: 6383502041684185158}
   m_mainBGM: {fileID: 8300000, guid: 8ab8b25a59eaab24b836ded4be692811, type: 3}
   CUTTIME: 2
-  MAXVOLUME: 0.4
+  MAXVOLUME: 0.2
   MINVOLUME: 0
 --- !u!82 &-3133337886527915403
 AudioSource:
@@ -64,7 +64,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8ab8b25a59eaab24b836ded4be692811, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -160,7 +160,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

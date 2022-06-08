@@ -11,6 +11,9 @@ public class InventoryManager : Singleton<InventoryManager>
         public RectTransform originalParent;
     }
 
+    [SerializeField]
+    AudioClip m_audioClip;
+
     [Header("Slot Information")]
     public float slotGap; // ±³°üÊý¾Ý¿â
 
@@ -110,11 +113,12 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        if (!if_inScene0 && Input.GetKeyDown(KeyCode.B))
         {
             isOpen = !isOpen;
             characterStatsPanel.SetActive(isOpen);
             bagPanel.SetActive(isOpen);
+            BGMManager.instance.PlayOneShot(m_audioClip);
         }
 
         UpdataCharacterText();
@@ -204,4 +208,14 @@ public class InventoryManager : Singleton<InventoryManager>
     }
 
     #endregion
+
+    private bool if_inScene0 = true;
+    public void leaveScene0()
+    {
+        if_inScene0 = false;
+    }
+    public void enterScene0()
+    {
+        if_inScene0 = true;
+    }
 }

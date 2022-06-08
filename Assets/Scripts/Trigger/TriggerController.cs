@@ -5,6 +5,17 @@ using UnityEngine.AI;
 
 public class TriggerController : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip m_audioClip;
+
+    [SerializeField]
+    float m_pitch = 1.0f;
+
+    [SerializeField]
+    float m_volume = 0.6f;
+
+    bool m_played = false;
+
     public enum EnemyType
     {
         Knight,
@@ -105,6 +116,8 @@ public class TriggerController : MonoBehaviour
         {
             isActive = true;
             passTime = 0.0f;
+            if(!m_played) BGMManager.Instance.PlayOneShotWithPitch(m_audioClip, m_pitch, m_volume);
+            m_played = true;
         }
     }
 

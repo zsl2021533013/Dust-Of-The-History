@@ -7,7 +7,12 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour
 {
     public ItemData_SO itemData;
-    
+
+    [SerializeField]
+    AudioClip m_audioClip;
+
+    bool is_played = false;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +24,10 @@ public class ItemPickUp : MonoBehaviour
             InventoryManager.Instance.bagContainerUI.Refresh();
 
             //GameManager.Instance.characterStats.EquipWeapon(itemData); // ×°±¸ÎäÆ÷
+
+            if (!is_played) BGMManager.Instance.PlayOneShot(m_audioClip);
+
+            is_played = true;
 
             Destroy(gameObject);
         }

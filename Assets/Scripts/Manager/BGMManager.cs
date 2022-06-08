@@ -24,6 +24,9 @@ public class BGMManager : Singleton<BGMManager>
     [SerializeField]
     float MINVOLUME = 0.0f;
 
+    [SerializeField]
+    float VOLUME = 0.6f;
+
     private float v;
 
     private bool m_cutting = false;
@@ -40,7 +43,7 @@ public class BGMManager : Singleton<BGMManager>
         if (clip.Equals(m_nowClip)) return;
         else
         {
-            m_BGMAudioSource.loop = false;
+            m_BGMAudioSource.loop = true;
             if (!m_nowClip)
             {
                 //if not exist clip then initialize
@@ -66,8 +69,17 @@ public class BGMManager : Singleton<BGMManager>
 
     public void PlayOneShot(AudioClip clip)
     {
-        m_audioSource.volume = MAXVOLUME;
+        m_audioSource.pitch = 1.0f;
         m_audioSource.loop = false;
+        m_audioSource.volume = VOLUME;
+        m_audioSource.PlayOneShot(clip);
+    }
+
+    public void PlayOneShotWithPitch(AudioClip clip, float pitch, float volume)
+    {
+        m_audioSource.pitch = pitch;
+        m_audioSource.loop = false;
+        m_audioSource.volume = volume;
         m_audioSource.PlayOneShot(clip);
     }
 

@@ -15,6 +15,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     AudioClip m_mainMenuBGM;
 
+    [SerializeField]
+    AudioClip m_MenuClickSound;
+
+    [SerializeField]
+    AudioClip m_menu;
+
     Button newGameBtn;
 
     Button continueBtn;
@@ -54,29 +60,35 @@ public class MainMenu : MonoBehaviour
 
     void PlayTimeLine()
     {
+        BGMManager.Instance.PlayOneShot(m_MenuClickSound);
         director.Play();
     }
 
     void NewGameBtn(PlayableDirector playableDirector)
     {
+        InventoryManager.Instance.leaveScene0();
         PlayerPrefs.DeleteAll();
         TranstionManager.Instance.StartGame();
     }
 
     void ContinueBtn()
     {
+        BGMManager.Instance.PlayOneShot(m_MenuClickSound);
+        InventoryManager.Instance.leaveScene0();
         if (!PlayerPrefs.HasKey("CurrentSceneName")) return;
         TranstionManager.Instance.TransitionToScene(TranstionManager.Instance.CurrentSceneName);
     }
 
     void LanguageBtn()
     {
+        BGMManager.Instance.PlayOneShot(m_menu);
         languageMenu.SetActive(true);
         mainMenu.SetActive(false);
     }
 
     void QuitGameBtn()
     {
+        BGMManager.Instance.PlayOneShot(m_menu);
         Application.Quit();
     }
 }

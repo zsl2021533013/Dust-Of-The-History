@@ -1111,8 +1111,13 @@ MonoBehaviour:
   characterData: {fileID: 0}
   attackData: {fileID: 0}
   levelUpFX: {fileID: 0}
+  templateBuffCharacterData: {fileID: 0}
+  templateBuffAttackData: {fileID: 0}
+  templateWeaponAttackData: {fileID: 0}
+  buffCharacterData: {fileID: 0}
+  buffAttackData: {fileID: 0}
+  weaponAttackData: {fileID: 0}
   weaponPos: {fileID: 0}
-  armorPos: {fileID: 0}
   isCritical: 0
 --- !u!114 &2019053904730047218
 MonoBehaviour:
@@ -1198,7 +1203,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.9
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

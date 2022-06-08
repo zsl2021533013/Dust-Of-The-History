@@ -17,6 +17,17 @@ public enum EnemyType
 
 public class PortalController : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip m_audioClip;
+
+    [SerializeField]
+    float m_pitch = 1.0f;
+
+    [SerializeField]
+    float m_volume = 0.6f;
+
+    bool m_played = false;
+
     [Header("Transition Information")]
     public string sceneName;
 
@@ -75,7 +86,11 @@ public class PortalController : MonoBehaviour
         passTime += Time.deltaTime;
         transform.position = Vector3.Lerp(transform.position, endPos.position, portalSpeed * Time.deltaTime);
         if (passTime > 5.0f)
+        {
             portal.SetActive(true);
+            if (!m_played) BGMManager.Instance.PlayOneShotWithPitch(m_audioClip, m_pitch, m_volume);
+            m_played = true;
+        }
     }
 
     public void SetTrigger()

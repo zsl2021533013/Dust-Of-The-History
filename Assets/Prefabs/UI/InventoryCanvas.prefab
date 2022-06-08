@@ -2309,6 +2309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d7e5c82def424f8c9f606a9a50fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_audioClip: {fileID: 8300000, guid: 178f3c07ed815f649be3ee200f9ceb31, type: 3}
   slotGap: 10
   templateBagData: {fileID: 11400000, guid: f11695e1266469444994fcbbbb7466ba, type: 2}
   templateActionData: {fileID: 11400000, guid: 57f2bd321e88e424e8d089db4f57bf2c, type: 2}
