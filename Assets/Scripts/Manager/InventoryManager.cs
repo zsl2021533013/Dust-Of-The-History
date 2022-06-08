@@ -141,7 +141,7 @@ public class InventoryManager : Singleton<InventoryManager>
         healthText.text = "Health : " + GameManager.Instance.characterStats.CurrentHealth;
         attackText.text = "ATK : " + GameManager.Instance.characterStats.MinDamge + "- " + GameManager.Instance.characterStats.MaxDamge;
         criticalText.text = "Critical : " + GameManager.Instance.characterStats.CriticalChance * 100 + "%";
-        defenceText.text = "Defence : " + GameManager.Instance.characterStats.CurrentDefence;
+        defenceText.text = "Defence : " + GameManager.Instance.characterStats.Defence;
     }
 
     #region 物品拖拽并检查是否在 UI 上 

@@ -168,4 +168,11 @@ public class DemonController : EnemyController
             }
         }
     }
+
+    protected override void EnterDeadState()
+    {
+        base.EnterDeadState();
+        BGMManager.Instance.ReturnToMainMusic();
+        GameManager.Instance.isDemoDead = true;
+    }
 }

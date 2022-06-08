@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3131247, g: 0.29381022, b: 0.5141291, a: 1}
+  m_IndirectSpecularColor: {r: 0.3131563, g: 0.29384542, b: 0.5141501, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37216,6 +37216,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4229482288035587732, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
+      propertyPath: templateBuffAttackData
+      value: 
+      objectReference: {fileID: 11400000, guid: f21559732d6a0804aa374b07d8f548ce, type: 2}
+    - target: {fileID: 4229482288035587732, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
+      propertyPath: templateWeaponAttackData
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c744f2503ed6344dadf02509ff9b70e, type: 2}
+    - target: {fileID: 4229482288035587732, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
+      propertyPath: templateBuffCharacterData
+      value: 
+      objectReference: {fileID: 11400000, guid: e7063d996aa28224f99da73c1cfab015, type: 2}
     - target: {fileID: 4231930500714319832, guid: b5710f00527fdfc42858c4be39ac2eaa, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -49298,7 +49310,6 @@ GameObject:
   - component: {fileID: 1254497274}
   - component: {fileID: 1254497272}
   - component: {fileID: 1254497276}
-  - component: {fileID: 1254497277}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -49417,14 +49428,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!81 &1254497277
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254497271}
-  m_Enabled: 1
 --- !u!1001 &1260313289
 PrefabInstance:
   m_ObjectHideFlags: 0

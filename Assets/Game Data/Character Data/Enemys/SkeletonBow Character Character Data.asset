@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   CurrentHealth: 10
-  BaseDefence: 0
-  CurrentDefence: 0
+  Defence: 0
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 35
+  KillPoint: 30

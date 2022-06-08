@@ -33447,6 +33447,7 @@ GameObject:
   - component: {fileID: 2807056709580277291}
   - component: {fileID: 2807056709580277290}
   - component: {fileID: 2807056709580277285}
+  - component: {fileID: 1898540072}
   m_Layer: 0
   m_Name: Artillery
   m_TagString: Artillery
@@ -33560,8 +33561,9 @@ MonoBehaviour:
   firePos: {fileID: 2857357561762461704}
   bombPrefab: {fileID: 3967000639986448926, guid: 9ce3648c2f08c4b4ab3436550f740bdd, type: 3}
   ammoIcon: {fileID: 8193591016108466986}
-  FireCoolDown: 5
+  FireCoolDown: 20
   cannon: {fileID: 8300000, guid: 1499c314106cf3048a0ad1830f83d094, type: 3}
+  cinemachineImpulseSource: {fileID: 1898540072}
 --- !u!135 &2807056709580277290
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -33591,6 +33593,66 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1898540072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855712604816011078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd438dd108a0f284aa931a2da434f1d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0.5, y: -0.5, z: 0.5}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_IgnoreTag: 
+  m_UseImpactDirection: 0
+  m_ScaleImpactWithMass: 0
+  m_ScaleImpactWithSpeed: 0
 --- !u!1 &2856154535536074312
 GameObject:
   m_ObjectHideFlags: 0

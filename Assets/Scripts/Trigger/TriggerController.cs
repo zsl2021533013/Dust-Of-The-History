@@ -55,7 +55,10 @@ public class TriggerController : MonoBehaviour
 
     void Start()
     {
-        portalController = portal.GetComponent<PortalController>();
+        if (portal)
+        {
+            portalController = portal.GetComponent<PortalController>();
+        }
     }
 
     void Update()
@@ -63,6 +66,10 @@ public class TriggerController : MonoBehaviour
         if (enemyLink)
         {
             if (enemyType == EnemyType.Knight && !GameManager.Instance.isKnightDead)
+                return;
+            if (enemyType == EnemyType.Demo && !GameManager.Instance.isDemoDead)
+                return;
+            if (enemyType == EnemyType.MachineGolem && !GameManager.Instance.isMachineGolemDead)
                 return;
         }
         if (isActive)

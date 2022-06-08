@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    public CharacterData_SO templateCharacterData; // 模板数据
+    public CharacterData_SO templateCharacterData; // 初始模板数据
     
-    public AttackData_SO templateAttackData; // 模板数据
+    public AttackData_SO templateAttackData; // 初始模板数据
 
     [Space(10)]
 
@@ -28,16 +28,24 @@ public class CharacterStats : MonoBehaviour
 
     public GameObject levelUpFX;
 
+    public CharacterData_SO templateBuffCharacterData; 
+
+    public AttackData_SO templateBuffAttackData;
+
+    public AttackData_SO templateWeaponAttackData;
+
+    [HideInInspector]
+    public CharacterData_SO buffCharacterData; // 记录已经使用的物品
+
+    [HideInInspector]
+    public AttackData_SO buffAttackData; // 记录已经使用的物品
+
+    [HideInInspector]
+    public AttackData_SO weaponAttackData;
+
     private void Awake()
     {
-        if(templateCharacterData != null)
-        {
-            characterData = Instantiate(templateCharacterData);
-        }  
-        if(templateAttackData != null)
-        {
-            attackData = Instantiate(templateAttackData);
-        }
+        InitializeData();
     }
 
     #region Read data
@@ -45,8 +53,7 @@ public class CharacterStats : MonoBehaviour
     public int MaxHealth { get { return characterData.MaxHealth; } set { characterData.MaxHealth = value; } }
     public int CurrentHealth { get { return characterData.CurrentHealth; } set { characterData.CurrentHealth = value;} }
 
-    public int BaseDefence { get { return characterData.BaseDefence; } set { characterData.BaseDefence = value; } }
-    public int CurrentDefence { get { return characterData.CurrentDefence; } set { characterData.CurrentDefence = value;} }
+    public int Defence { get { return characterData.Defence; } set { characterData.Defence = value; } }
 
     public int MaxLevel { get { return characterData.MaxLevel; } set { characterData.MaxLevel = value;} }
     public int CurrentLevel { get { return characterData.CurrentLevel; } set { characterData.CurrentLevel = value;} }
@@ -75,22 +82,42 @@ public class CharacterStats : MonoBehaviour
     public float CriticalMultiplier { get { return attackData.CriticalMultiplier; } set { attackData.CriticalMultiplier = value;} }
     public float CriticalChance { get { return attackData.CriticalChance; } set { attackData.CriticalChance = value;} }
 
-
-
     public Transform weaponPos; // 武器生成位置
-
-    public Transform armorPos; // 盔甲生成位置
 
     [HideInInspector]
     public bool isCritical;
 
     #endregion
 
-    #region Character combat
+    public void InitializeData() 
+    {
+        if (templateCharacterData != null)
+        {
+            characterData = Instantiate(templateCharacterData);
+        }
+        if (templateAttackData != null)
+        {
+            attackData = Instantiate(templateAttackData);
+        }
+        if (templateBuffCharacterData != null)
+        {
+            buffCharacterData = Instantiate(templateBuffCharacterData);
+        }
+        if (templateBuffAttackData != null)
+        {
+            buffAttackData = Instantiate(templateBuffAttackData);
+        }
+        if(templateWeaponAttackData != null)
+        {
+            weaponAttackData = Instantiate(templateWeaponAttackData);
+        }
+    }
+
+    #region Character Combat
 
     public void TakeDamage(CharacterStats attacker, CharacterStats defener)
     {
-        int damage = Mathf.Max(attacker.CurrentDamage(attacker, defener) - defener.CurrentDefence, 0);
+        int damage = Mathf.Max(attacker.CurrentDamage(attacker, defener) - defener.Defence, 0);
         defener.CurrentHealth = Mathf.Max(defener.CurrentHealth - damage, 0);
 
         if(defener.CurrentHealth <= 0) // 提升经验
@@ -107,7 +134,7 @@ public class CharacterStats : MonoBehaviour
 
     public void TakeDamage(int damage, CharacterStats defener)
     {
-        defener.CurrentHealth = Mathf.Max(defener.CurrentHealth - Mathf.Max(damage - defener.CurrentDefence, 0), 0);
+        defener.CurrentHealth = Mathf.Max(defener.CurrentHealth - Mathf.Max(damage - defener.Defence, 0), 0);
         
         if (defener.CurrentHealth <= 0 && defener.CompareTag("Enemy")) // 提升经验
         {
@@ -133,6 +160,24 @@ public class CharacterStats : MonoBehaviour
         return (int)(coreDamage);
     }
 
+    public void UpdatePlayerData()
+    {
+        MaxHealth = 100 + (CurrentLevel - 1) * 15;
+
+        AttackCoolDown = weaponAttackData.AttackCoolDown != 0 ?
+             weaponAttackData.AttackCoolDown : templateAttackData.AttackCoolDown;
+        AttackRange = weaponAttackData.AttackRange != 0 ?
+             weaponAttackData.AttackRange : templateAttackData.AttackRange;
+
+        MinDamge = templateAttackData.MinDamge + buffAttackData.MinDamge 
+            + weaponAttackData.MinDamge + CurrentLevel - 1;
+        MaxDamge = templateAttackData.MaxDamge + buffAttackData.MaxDamge 
+            + weaponAttackData.MaxDamge + CurrentLevel - 1;
+        CriticalChance = templateAttackData.CriticalChance 
+            + buffAttackData.CriticalChance + weaponAttackData.CriticalChance;
+        Defence = templateCharacterData.Defence + buffCharacterData.Defence + (CurrentLevel - 1) / 2;
+    }
+
     void LevelUp() // 等级提升
     {
         Debug.Log("Level Up");
@@ -148,13 +193,9 @@ public class CharacterStats : MonoBehaviour
 
         if (CurrentLevel == MaxLevel) return;
 
-        MaxHealth = (int)(multiplier * MaxHealth);
+        UpdatePlayerData();
         CurrentHealth = MaxHealth;
 
-        MinDamge = templateAttackData.MinDamge + 2 * CurrentLevel;
-        MaxDamge = templateAttackData.MaxDamge + 2 * CurrentLevel;
-
-        CurrentDefence = templateCharacterData.BaseDefence + CurrentLevel;
     }
 
     IEnumerator LevelUpFX()
@@ -173,6 +214,8 @@ public class CharacterStats : MonoBehaviour
     {
         if(itemData == null) return;
 
+        Debug.Log("Equiped Weapon");
+
         Instantiate(itemData.weaponPrefab, weaponPos); // 先生成武器
 
         GameManager.Instance.characterStats.ApplyAttackData(itemData.attackData); // 再更新玩家数值
@@ -189,7 +232,10 @@ public class CharacterStats : MonoBehaviour
             {
                 Destroy(weaponPos.GetChild(i).gameObject);
             }
-            attackData = Instantiate(templateAttackData); // 还原数据
+
+            weaponAttackData = Instantiate(templateWeaponAttackData);
+            UpdatePlayerData();
+
             GetComponent<Animator>().runtimeAnimatorController = baseController;
         }
         
@@ -203,59 +249,11 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyAttackData(AttackData_SO itemAttackData) //将攻击数据传入玩家数据
     {
-        AttackRange = itemAttackData.AttackRange;
-        AttackCoolDown = itemAttackData.AttackCoolDown;
-        MinDamge = templateAttackData.MinDamge + itemAttackData.MinDamge;
-        MaxDamge = templateAttackData.MaxDamge + itemAttackData.MaxDamge;
-        CriticalMultiplier = itemAttackData.CriticalMultiplier;
-        CriticalChance = itemAttackData.CriticalChance;
+        weaponAttackData = itemAttackData;
+
+        UpdatePlayerData();
 
         Debug.Log("Player's attack data has been updated");
-    }
-
-    #endregion
-
-    #region 切换装备
-
-    public void EquipArmor(ItemData_SO itemData)
-    {
-        if (itemData == null) return;
-
-        Instantiate(itemData.weaponPrefab, armorPos); // 先生成武器
-
-        GameManager.Instance.characterStats.ApplyAttackData(itemData.attackData); // 再更新玩家数值
-
-        GetComponent<Animator>().runtimeAnimatorController = itemData.overrideController;
-    }
-
-    public void UnEquipArmor()
-    {
-        Debug.Log("Remove Equipment");
-        if (weaponPos.childCount > 0)
-        {
-            for (int i = 0; i < weaponPos.childCount; i++) // TODO: 需要更改。我们可以直接 SetActive 开控制，不必生成
-            {
-                Destroy(weaponPos.GetChild(i).gameObject);
-            }
-            characterData = Instantiate(templateCharacterData); // 还原数据
-            GetComponent<Animator>().runtimeAnimatorController = baseController;
-        }
-
-    }
-
-    public void ChangeArmor(ItemData_SO itemData)
-    {
-        UnEquipArmor();
-        EquipArmor(itemData);
-    }
-
-    public void ApplyCharacterData(CharacterData_SO itemCharacterData) //将角色数据传入玩家数据
-    {
-        MaxHealth = templateCharacterData.MaxHealth + itemCharacterData.MaxHealth;
-
-        CurrentDefence = templateCharacterData.BaseDefence + itemCharacterData.BaseDefence;
-
-        Debug.Log("Player's character data has been updated");
     }
 
     #endregion
@@ -269,18 +267,18 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyDefence(int amount)
     {
-        CurrentDefence += amount;
+        buffCharacterData.Defence += amount;
     }
 
     public void ApplyAttack(int amount)
     {
-        MinDamge += amount;
-        MaxDamge += amount;
+        buffAttackData.MinDamge += amount;
+        buffAttackData.MaxDamge += amount;
     }
 
     public void ApplyCritical(float amount)
     {
-        CriticalChance += amount;
+        buffAttackData.CriticalChance += amount;
     }
 
     public void ApplyItem(UseableItemData_SO useableItemData)
@@ -289,6 +287,7 @@ public class CharacterStats : MonoBehaviour
         ApplyDefence(useableItemData.DefencePoint);
         ApplyAttack(useableItemData.AttackPoint);
         ApplyCritical(useableItemData.CriticalPoint);
+        UpdatePlayerData();
     }
 
     #endregion

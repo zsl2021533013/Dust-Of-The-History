@@ -16569,7 +16569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5120309209729013738
 Transform:
   m_ObjectHideFlags: 0
@@ -16672,8 +16672,13 @@ MonoBehaviour:
   characterData: {fileID: 0}
   attackData: {fileID: 0}
   levelUpFX: {fileID: 0}
+  templateBuffCharacterData: {fileID: 0}
+  templateBuffAttackData: {fileID: 0}
+  templateWeaponAttackData: {fileID: 0}
+  buffCharacterData: {fileID: 0}
+  buffAttackData: {fileID: 0}
+  weaponAttackData: {fileID: 0}
   weaponPos: {fileID: 0}
-  armorPos: {fileID: 0}
   isCritical: 0
 --- !u!114 &5065152414171306186
 MonoBehaviour:
@@ -16712,8 +16717,8 @@ MonoBehaviour:
   lavaPS2Prefab: {fileID: 293680525758350327}
   star: {fileID: 9037318910453934984, guid: 72043158dcac2594f90ca3a9dc81de77, type: 3}
   offsetFactor: 16
-  lavaExistTime: 7
-  starAmount: 8
+  lavaExistTime: 6
+  starAmount: 10
 --- !u!114 &5065152414171306166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17905,7 +17910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5124900750421766644
 Transform:
   m_ObjectHideFlags: 0
@@ -17914,8 +17919,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124900750421766155}
   m_LocalRotation: {x: -0.38810292, y: 0.043083664, z: 0.8914819, w: 0.22973882}
-  m_LocalPosition: {x: -0.188, y: 0.704, z: 0.81}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.049, y: 0.61, z: 0.63}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5120309209729013738}
@@ -22738,8 +22743,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5124900750540626980}
   m_LocalRotation: {x: -0.27898803, y: 0.27898803, z: 0.6497428, w: 0.6497428}
-  m_LocalPosition: {x: 0.108, y: 0.612, z: 1.762}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0.135, y: 0.513, z: 1.047}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5120309209729013738}

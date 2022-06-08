@@ -150,4 +150,11 @@ public class MachanicalGolemController : EnemyController
             }
         }
     }
+
+    protected override void EnterDeadState()
+    {
+        base.EnterDeadState();
+        BGMManager.Instance.ReturnToMainMusic();
+        GameManager.Instance.isMachineGolemDead = true;
+    }
 }

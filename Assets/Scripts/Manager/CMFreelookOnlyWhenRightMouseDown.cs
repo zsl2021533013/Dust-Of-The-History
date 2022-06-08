@@ -8,6 +8,16 @@ public class CMFreelookOnlyWhenRightMouseDown : Singleton<CMFreelookOnlyWhenRigh
         cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
         CinemachineCore.GetInputAxis = GetAxisCustom;
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            cinemachineFreeLook = GetComponent<CinemachineFreeLook>();
+            CinemachineCore.GetInputAxis = GetAxisCustom;
+        }
+    }
+
     public float GetAxisCustom(string axisName)
     {
         if (Input.GetAxis("Mouse ScrollWheel") < 0)

@@ -115,4 +115,11 @@ public class UndeadKnightController : EnemyController
             kickCoolDown = KickCoolDown;
         }
     }
+
+    protected override void EnterDeadState()
+    {
+        base.EnterDeadState();
+        BGMManager.Instance.ReturnToMainMusic();
+        GameManager.Instance.isKnightDead = true;
+    }
 }

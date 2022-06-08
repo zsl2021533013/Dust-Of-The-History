@@ -336,14 +336,13 @@ public class EnemyController : MonoBehaviour, IEndGameObserver
         }
     }
 
-    void EnterDeadState()
+    protected virtual void EnterDeadState()
     {
         isDie = true;
         attackTarget = null; // 注意，角色死亡后如不将目标清空，则会在角色摧毁后继续 Hit() 造成 bug
         agent.radius = 0;
         agent.isStopped = true;
         collider.enabled = false;
-        BGMManager.Instance.ReturnToMainMusic();
         Destroy(gameObject, 2.0f);
     }
 

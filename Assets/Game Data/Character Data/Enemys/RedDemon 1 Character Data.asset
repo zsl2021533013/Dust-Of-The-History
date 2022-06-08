@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   CurrentHealth: 100
-  BaseDefence: 2
-  CurrentDefence: 2
+  Defence: 4
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1

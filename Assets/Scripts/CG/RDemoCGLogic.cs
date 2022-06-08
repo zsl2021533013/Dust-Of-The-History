@@ -67,7 +67,7 @@ public class RDemoCGLogic : MonoBehaviour
             if (2.5f < timeLine && timeLine < 8.0f) 
             {
                 fire.SetActive(true);
-                fire.transform.localScale += new Vector3(9.0f * Time.deltaTime, 9.0f * Time.deltaTime, 9.0f * Time.deltaTime);
+                fire.transform.localScale += new Vector3(7.0f * Time.deltaTime, 7.0f * Time.deltaTime, 7.0f * Time.deltaTime);
             }
             if (6.0f < timeLine && timeLine < 6.1f) 
                 cameraManager.MoveCG(1, 4.0f, 0.8f);
@@ -107,9 +107,9 @@ public class RDemoCGLogic : MonoBehaviour
             }
             if (timeLine>28.0f)
             {
-                light1.enabled = false;
-                light2.enabled = false;
-                fire.SetActive(false);
+                //light1.enabled = false;
+                //light2.enabled = false;
+                //fire.SetActive(false);
                 foreach (GameObject i in magic)
                     i.SetActive(false);
                 foreach (GameObject i in power)

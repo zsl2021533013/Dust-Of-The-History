@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: SkeletonSword&Shield Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 15
-  CurrentHealth: 15
-  BaseDefence: 1
-  CurrentDefence: 1
+  MaxHealth: 16
+  CurrentHealth: 16
+  Defence: 1
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 40
+  KillPoint: 30

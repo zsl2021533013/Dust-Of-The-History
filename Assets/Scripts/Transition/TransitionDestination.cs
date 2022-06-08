@@ -9,6 +9,7 @@ public enum DestinationTag
     Scene_1_Portal_3,
     Scene_1_Portal_4,
     Scene_2_Portal_1,
+    Scene_2_Portal_2,
     Scene_3_Portal_1,
 }
 

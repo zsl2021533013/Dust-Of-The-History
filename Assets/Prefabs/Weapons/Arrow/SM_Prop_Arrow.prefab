@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68713b720ebceb540bace664d724df4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 2
-  damage: 12
+  time: 1.5
+  damage: 20
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &8263175948426061206

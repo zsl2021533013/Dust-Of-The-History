@@ -72512,7 +72512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDamage: 2
-  maxDamage: 5
+  maxDamage: 10
   rotSpeed: 1.6
 --- !u!1 &8442180317728341379
 GameObject:
@@ -77347,8 +77347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384ea7e626281b9408bc2aed5e5a5777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDamage: 0
-  maxDamage: 4
+  minDamage: 4
+  maxDamage: 10
 --- !u!1 &8442532893922030735
 GameObject:
   m_ObjectHideFlags: 0
@@ -82199,7 +82199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9216877107710482008}
   m_LocalRotation: {x: 0.07626125, y: -0.039269295, z: 0.16577584, w: 0.98242587}
-  m_LocalPosition: {x: 0.00053441525, y: 0.78802776, z: -0.083488464}
+  m_LocalPosition: {x: 0.00053438544, y: 0.78802776, z: -0.083488464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84373,9 +84373,9 @@ GameObject:
   - component: {fileID: 9133203278017257930}
   - component: {fileID: 9133203278017257931}
   - component: {fileID: 9133203278017257932}
-  - component: {fileID: 9133203278017257933}
   - component: {fileID: 1763582546}
   - component: {fileID: 1763582545}
+  - component: {fileID: 5669058826766744430}
   m_Layer: 6
   m_Name: Character_BR_MechanicalGolem
   m_TagString: Enemy
@@ -84486,8 +84486,13 @@ MonoBehaviour:
   characterData: {fileID: 0}
   attackData: {fileID: 0}
   levelUpFX: {fileID: 0}
+  templateBuffCharacterData: {fileID: 0}
+  templateBuffAttackData: {fileID: 0}
+  templateWeaponAttackData: {fileID: 0}
+  buffCharacterData: {fileID: 0}
+  buffAttackData: {fileID: 0}
+  weaponAttackData: {fileID: 0}
   weaponPos: {fileID: 0}
-  armorPos: {fileID: 0}
   isCritical: 0
 --- !u!114 &9133203278017257932
 MonoBehaviour:
@@ -84505,25 +84510,6 @@ MonoBehaviour:
   visibleTime: 3
   healthBar: {fileID: 2728789139587852014, guid: 698af420195a3ac468995d391716b48e, type: 3}
   healthBarPos: {fileID: 9217480312118631660}
---- !u!114 &9133203278017257933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9218649943167493470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2a2e58eca7d9c84e8232ae85d0d4339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyState: 0
-  rotSpeed: 1
-  flameThrowerPS: {fileID: 8442180317728341379}
-  groundCrackPS: {fileID: 950733844421741146}
-  skill2Range: 25
-  Skill2CoolDown: 20
-  powerDrawPS: {fileID: 1967428568129890252}
 --- !u!82 &1763582546
 AudioSource:
   m_ObjectHideFlags: 0
@@ -84644,6 +84630,25 @@ MonoBehaviour:
   m_agent: {fileID: 9133203278017257929}
   m_audioSource: {fileID: 1763582546}
   m_walk: {fileID: 8300000, guid: b10d0b0ba9e8c5546a45cf96fc5bc6d0, type: 3}
+--- !u!114 &5669058826766744430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218649943167493470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f97e3620f02e364b971576d1d1d2859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  rotSpeed: 2
+  flameThrowerPS: {fileID: 8442180317728341379}
+  groundCrackPS: {fileID: 950733844421741146}
+  skill2Range: 30
+  Skill2CoolDown: 18
+  powerDrawPS: {fileID: 1967428568129890252}
 --- !u!1 &9218682685685335192
 GameObject:
   m_ObjectHideFlags: 0

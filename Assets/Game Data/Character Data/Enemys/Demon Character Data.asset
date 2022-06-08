@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: Demon Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 80
-  CurrentHealth: 80
-  BaseDefence: 4
-  CurrentDefence: 4
+  MaxHealth: 100
+  CurrentHealth: 100
+  Defence: 6
   MaxLevel: 1
   CurrentLevel: 1
   ExperienceThreshold: 1
   LevelUpBuff: 0
   CurrentExperiencePoint: 0
-  KillPoint: 100
+  KillPoint: 80

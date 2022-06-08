@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ArtilleryController : MonoBehaviour
 {
+    const float AttackRange = 30.0f;
+
     public GameObject artilleryStrikePS;
 
     public Transform firePos;
@@ -22,6 +24,18 @@ public class ArtilleryController : MonoBehaviour
     [SerializeField]
     Cinemachine.CinemachineImpulseSource cinemachineImpulseSource;
 
+    public void FaceEnemyInAttackRange()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, AttackRange);
+
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                transform.LookAt(collider.gameObject.transform);
+            }
+        }
+    }
 
     private void Update()
     {
@@ -44,7 +58,7 @@ public class ArtilleryController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player") && MouseManager.Instance.isClickArtillery)
         {
-            transform.rotation = other.gameObject.transform.rotation;
+            FaceEnemyInAttackRange();
             StartCoroutine(Fire());
         }
     }

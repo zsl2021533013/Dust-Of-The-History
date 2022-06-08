@@ -15,8 +15,7 @@ public class CharacterData_SO : ScriptableObject
     [Space(10)]
 
     [Header("Defence Information")]
-    public int BaseDefence;
-    public int CurrentDefence;
+    public int Defence;
 
     [Space(10)]
 

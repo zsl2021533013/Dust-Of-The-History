@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedDemonController : EnemyController
+public class RedDemon1Controller : EnemyController
 {
     public float Attack2CoolDown;
 
@@ -13,6 +13,8 @@ public class RedDemonController : EnemyController
     public GameObject groundCrackPS;
 
     public GameObject rockPS;
+
+    public AudioClip scene_3_BGM;
 
     public bool FoundPlayerInAttack2Range() 
     {
@@ -99,5 +101,12 @@ public class RedDemonController : EnemyController
             animator.SetTrigger("Attack2");
             attack2CoolDown = Attack2CoolDown;
         }
+    }
+
+    protected override void EnterDeadState()
+    {
+        BGMManager.Instance.PlayBGM(scene_3_BGM);
+        GameManager.Instance.isRedDemoDead = true;
+        base.EnterDeadState();
     }
 }

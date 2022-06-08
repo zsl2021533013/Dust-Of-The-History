@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 2
-  damage: 30
+  damage: 20
   dis: 30
   g: -10
   explosionPS: {fileID: 8638738549194260444}

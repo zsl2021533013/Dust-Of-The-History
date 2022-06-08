@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c639082a7da5ff945b30f6c3a5cf7c3d, type: 3}
+  m_Name: Ham01 Data
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: "\u77EE\u4EBA\u738B\u9524"
+  itemIcon: {fileID: 21300000, guid: e232ec40b9e2ed444b9b7933fc4acb15, type: 3}
+  itemAmount: 1
+  itemDescription: "\u7531\u77EE\u4EBA\u4E4B\u795E \u656C\u8F69\u4FA0\u793C \u6253\u9020\u7684\u795E\u5668\uFF0C\u540E\u8D60\u4E0E
+    \u77EE\u4EBA\u738B\uFF0C\u5185\u6DB5\u7684\u795E\u529B\u80FD\u8BA9\u4EBA\u53D1\u6325\u51FA\u81EA\u8EAB\u529B\u91CF\u754C\u9650\u4E4B\u5916\u7684\u529B\u91CF\n\u53EF\u60DC\u795E\u5668\u4E5F\u65E0\u6CD5\u5F25\u8865\u8D2A\u5A6A\u5E26\u6765\u7684\u707E\u96BE"
+  stackable: 0
+  weaponPrefab: {fileID: 498498414492376274, guid: 80e3e81a78c0aa4449a7d7d9d6b53fc3, type: 3}
+  attackData: {fileID: 11400000, guid: d3da4ac3957b2b942b3d3c9ce4affea7, type: 2}
+  overrideController: {fileID: 22100000, guid: 55d5413367592cb4c8ae0347b7afdbf4, type: 2}
+  armorPrefab: {fileID: 0}
+  characterData: {fileID: 0}
+  useableItemData: {fileID: 0}

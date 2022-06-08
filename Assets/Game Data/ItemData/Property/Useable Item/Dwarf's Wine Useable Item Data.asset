@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9751dd3a547bc541bbcfc2c5be694f6, type: 3}
   m_Name: Dwarf's Wine Useable Item Data
   m_EditorClassIdentifier: 
-  HealthPoint: 15
+  HealthPoint: 30
   DefencePoint: 0
   AttackPoint: 0
   CriticalPoint: 0
