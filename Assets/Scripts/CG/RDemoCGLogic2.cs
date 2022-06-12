@@ -42,6 +42,7 @@ public class RDemoCGLogic2 : MonoBehaviour
         if (GameManager.Instance.isRedDemoDead && isStart)
         {
             passTime += Time.deltaTime;
+            if(passTime < 0.1f) navMeshAgent.isStopped = true;
             if (passTime > 4.0f)
             {
                 if (4.0f < passTime && passTime < 4.1f)
@@ -52,7 +53,6 @@ public class RDemoCGLogic2 : MonoBehaviour
                 {
                     if (weapon.transform.position != endPos.position)
                     {
-                        navMeshAgent.isStopped = true;
                         speed += 30.0f * Time.deltaTime;
                         weapon.transform.position = Vector3.MoveTowards(weapon.transform.position, endPos.position, speed * Time.deltaTime);
                     }
@@ -64,14 +64,14 @@ public class RDemoCGLogic2 : MonoBehaviour
                 }
                 if (14.0f < passTime && passTime < 14.1f)
                     cameraManager.MoveCG(0, 4.2f, 100.0f);
-                if (passTime > 25.0f)
-                    redDemo2.SetActive(true);
                 if (passTime>27.0f)
                 {
                     cameraManager.EndCG(4.0f, 1.0f);
                     navMeshAgent.isStopped = false;
                     isStart = false;
                 }
+                if (passTime > 29.0f)
+                    redDemo2.SetActive(true);
             }
         }
     }

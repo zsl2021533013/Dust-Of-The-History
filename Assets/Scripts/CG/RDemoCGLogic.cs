@@ -101,12 +101,12 @@ public class RDemoCGLogic : MonoBehaviour
                 cameraManager.MoveCG(2, 5, 0.7f);
             if(timeLine>26.0f)
             {
-                redDemo.SetActive(true);
                 portal.transform.localScale -= new Vector3(2.0f * Time.deltaTime, 2.0f * Time.deltaTime, 2.0f * Time.deltaTime);
                 groundLight.intensity -= 99999 * Time.deltaTime;
             }
-            if (timeLine>28.0f)
+            if (timeLine>30.0f)
             {
+                redDemo.SetActive(true);
                 //light1.enabled = false;
                 //light2.enabled = false;
                 //fire.SetActive(false);
@@ -124,7 +124,7 @@ public class RDemoCGLogic : MonoBehaviour
                 portal.SetActive(false);
                 groundLight.enabled = false;
                 isStart = false;
-                cameraManager.EndCG(3.0f, 1.0f);
+                cameraManager.EndCG(1.0f, 3.0f);
                 navMeshAgent.isStopped = false;
             }
         }

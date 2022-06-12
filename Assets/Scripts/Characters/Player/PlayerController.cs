@@ -39,7 +39,7 @@ public class PlayerController : Singleton<PlayerController>
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.RigisterPlayer(gameObject);
+        GameManager.Instance.RigisterPlayer(gameObject);  
         TranstionManager.Instance.RigisterPlayer(gameObject);
         MouseManager.Instance.OnMouseClick += MoveToTarget;
         MouseManager.Instance.OnEnemyClick += EventAttack;
