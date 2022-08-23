@@ -32,7 +32,7 @@ public class MachanicalGolem : EnemyController
             if (collider.CompareTag("Player"))
             {
                 attackTarget = collider.gameObject;
-                return true;
+                return !FoundPlayerInAttackRange();
             }
         }
 
