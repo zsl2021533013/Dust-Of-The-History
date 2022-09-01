@@ -68,7 +68,7 @@ public class BombController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, collision.gameObject.GetComponent<CharacterStats>());
-            collision.gameObject.GetComponent<Animator>().SetTrigger("Hit");
+            collision.gameObject.GetComponent<Animator>().SetTrigger("Knockdown");
         }
     }
 

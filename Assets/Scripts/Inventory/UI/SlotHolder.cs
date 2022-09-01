@@ -37,7 +37,7 @@ public class SlotHolder : MonoBehaviour,IPointerClickHandler,IPointerEnterHandle
 
         if(itemUI.GetItemData.itemData && itemUI.GetItemData.itemData.itemType == ItemType.Useable && itemUI.GetItemData.amount > 0)
         {
-            GameManager.Instance.characterStats.ApplyHealth(itemUI.GetItemData.itemData.useableItemData.HealthPoint);
+            GameManager.Instance.characterStats.ApplyItem(itemUI.GetItemData.itemData.useableItemData);
             itemUI.GetItemData.amount--;
             UpdateItem();
         }

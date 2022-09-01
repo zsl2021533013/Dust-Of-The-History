@@ -14,6 +14,11 @@ public class TranstionManager : Singleton<TranstionManager>, IEndGameObserver
 
     private bool gameEnd = true;
 
+    [SerializeField]
+    AudioClip m_GameBgm;
+    [SerializeField]
+    AudioClip m_MainMenuBgm;
+
     private void Start()
     {
         GameManager.Instance.RigisterObserver(this);
@@ -135,6 +140,8 @@ public class TranstionManager : Singleton<TranstionManager>, IEndGameObserver
             yield return StartCoroutine(FadeCanvasManager.Instance.FadeIn(FadeCanvasManager.Instance.fadeInTime));
             FadeCanvasManager.Instance.gameObject.GetComponent<Canvas>().enabled = false;
 
+            BGMManager.instance.PlayBGM(m_GameBgm);
+
             yield break;
         }
     }
@@ -159,6 +166,8 @@ public class TranstionManager : Singleton<TranstionManager>, IEndGameObserver
         yield return StartCoroutine(FadeCanvasManager.Instance.FadeIn(FadeCanvasManager.Instance.fadeInTime));
         FadeCanvasManager.Instance.gameObject.GetComponent<Canvas>().enabled = false;
 
+        BGMManager.instance.PlayBGM(m_GameBgm);
+
         yield break;
         
     }
@@ -172,6 +181,8 @@ public class TranstionManager : Singleton<TranstionManager>, IEndGameObserver
 
         yield return StartCoroutine(FadeCanvasManager.Instance.FadeIn(FadeCanvasManager.Instance.fadeInTime));
         FadeCanvasManager.Instance.gameObject.GetComponent<Canvas>().enabled = false;
+
+        BGMManager.instance.PlayBGM(m_MainMenuBgm);
 
         yield break;
     }

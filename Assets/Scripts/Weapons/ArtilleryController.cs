@@ -16,6 +16,12 @@ public class ArtilleryController : MonoBehaviour
 
     private float fireCoolDown;
 
+    [SerializeField]
+    AudioClip cannon;
+
+    [SerializeField]
+    Cinemachine.CinemachineImpulseSource cinemachineImpulseSource;
+
 
     private void Update()
     {
@@ -50,6 +56,9 @@ public class ArtilleryController : MonoBehaviour
         ammoIcon.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
+
+        BGMManager.Instance.PlayOneShot(cannon);
+        cinemachineImpulseSource.GenerateImpulse();
 
         artilleryStrikePS.SetActive(true);
 

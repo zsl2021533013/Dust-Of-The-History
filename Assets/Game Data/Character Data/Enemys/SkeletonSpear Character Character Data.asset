@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7ca73cce5ba8e49965f44e94050b6b, type: 3}
   m_Name: SkeletonSpear Character Character Data
   m_EditorClassIdentifier: 
-  MaxHealth: 20
-  CurrentHealth: 20
+  MaxHealth: 12
+  CurrentHealth: 12
   BaseDefence: 0
   CurrentDefence: 0
   MaxLevel: 1

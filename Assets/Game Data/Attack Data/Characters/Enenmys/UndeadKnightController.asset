@@ -21,7 +21,7 @@ MonoBehaviour:
   AttackCoolDown: 6
   SkillRange: 2.3
   SkillCoolDown: 8
-  MinDamge: 10
-  MaxDamge: 12
+  MinDamge: 14
+  MaxDamge: 20
   CriticalMultiplier: 1.5
   CriticalChance: 0.2

@@ -6,6 +6,7 @@ public class FlameThrowerController : MonoBehaviour
 {
     public float minDamage;
     public float maxDamage;
+
     private void OnParticleCollision(GameObject other)
     {
         if (other.CompareTag("Player"))
